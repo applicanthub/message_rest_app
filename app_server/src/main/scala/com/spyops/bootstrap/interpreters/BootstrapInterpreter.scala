@@ -7,10 +7,10 @@ import scala.concurrent.ExecutionContext
 import io.finch.circe._
 import com.twitter.finagle.Http
 import com.twitter.conversions.DurationOps._
-import com.twitter.util.Await
+import com.twitter.util.{Await, Duration}
 import com.spyops.bootstrap.BootstrapAlgebra
 import com.spyops.business.application.messages.services.interpreters.MessageGeneralApplicationControllerInterpreter
-import com.spyops.business.application.users.services.interpreters.{ CreateUserTokenHS256Interpreter, UsersGeneralApplicationInterpreter }
+import com.spyops.business.application.users.services.interpreters.{CreateUserTokenHS256Interpreter, UsersGeneralApplicationInterpreter}
 import com.spyops.business.domain.messages.services.interpreters._
 import com.spyops.configs.ApplicationConfig
 import com.spyops.business.domain.users.services.interpreters.UsernameFactoryInterpreter
@@ -99,7 +99,7 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
    * @param mainMethodArgs Main method arguments
    */
   def runApplication(mainMethodArgs: Array[String]): Unit = {
-    val _ = Await.ready(Http.serve(addr = ":" ++ applicationConfig.serverPortNumber.toString, applicationService), 60.second)
+    val _ = Await.ready(Http.serve(addr = ":" ++ applicationConfig.serverPortNumber.toString, applicationService), Duration.Top)
   }
 
 }
