@@ -6,8 +6,7 @@ import cats.effect.IO
 import scala.concurrent.ExecutionContext
 import io.finch.circe._
 import com.twitter.finagle.Http
-import com.twitter.conversions.DurationOps._
-import com.twitter.util.Await
+import com.twitter.util.{ Await, Duration }  
 import com.spyops.bootstrap.BootstrapAlgebra
 import com.spyops.business.application.messages.services.interpreters.MessageGeneralApplicationControllerInterpreter
 import com.spyops.business.application.users.services.interpreters.{ CreateUserTokenHS256Interpreter, UsersGeneralApplicationInterpreter }
@@ -32,7 +31,16 @@ import com.spyops.infrastructure.repositories.doobie.messages.interpreters.Messa
  */
 final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends BootstrapAlgebra {
 
+  //================================================================================
+  // Execution contexts: Message
+  //================================================================================
+
   private implicit val contextShift = IO.contextShift(ExecutionContext.global)
+
+  //================================================================================
+  // Databases: Message
+  //================================================================================
+
   private implicit val doobieTranscation =
     Transactor.fromDriverManager[IO](
       driver = "org.postgresql.Driver",
@@ -40,7 +48,10 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
       user = "jbvquqam",
       pass = "d1WRSNjK4cUe61S-EebX_wimPyTIyq_2")
 
-  // ==== Domain services: Message
+  //================================================================================
+  // Domain services: Message
+  //================================================================================
+
   private val messageIdFactoryInterpreter: MessageIdFactoryInterpreter = MessageIdFactoryInterpreter.apply
   private val senderIdFactoryInterpreter: SenderIdFactoryInterpreter = SenderIdFactoryInterpreter.apply
   private val recipientIdFactoryInterpreter: RecipientIdFactoryInterpreter = RecipientIdFactoryInterpreter.apply
@@ -54,14 +65,22 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
       isDeletedFactoryInterpreter,
       bodyFactoryInterpreter)
 
-  // ==== Domain services: Users
+  //================================================================================
+  // Domain services: Users
+  //================================================================================
+
   private implicit val usernameFactoryInterpreter: UsernameFactoryInterpreter = UsernameFactoryInterpreter.apply
 
-  // ==== Repositories: All
+  //================================================================================
+  // Domain services: Repositories
+  //================================================================================
+
   private implicit val messageDoobieRepository = MessageDoobieRepositoryInterpreter.apply(doobieTranscation)
   private implicit val userDoobieRepository = UserRepositoryDoobieFInterpreter.apply(doobieTranscation)
 
-  // ==== Application: Messages
+  //================================================================================
+  // Application: Messages
+  //================================================================================
   private val createUserToken = CreateUserTokenHS256Interpreter.apply("ExC>&QpG8_Bcnp6Tvz(/XR3/rES;wj(R7Ytv(f-")
   private val messageGeneralApplicationInterpreter =
     MessageGeneralApplicationControllerInterpreter(
@@ -71,25 +90,37 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
       messageFactoryInterpreter,
       messageDoobieRepository)
 
-  // ==== Application: Users
+  //================================================================================
+  // Application: Users
+  //================================================================================
+
   private val usersGeneralApplicationInterpreter =
     UsersGeneralApplicationInterpreter(
       createUserToken,
       usernameFactoryInterpreter,
       userDoobieRepository)
 
-  // Wire up infrastructure (endpoints)
+  //================================================================================
+  // Endpoints: Users
+  //================================================================================
+
   private val applicationFinchRoutes = HealthFinchIOEndpointsInterpreter.apply.routes
   private val messageFinchRoutes = MessageEndpointsInterpreters(messageGeneralApplicationInterpreter).routes
   private val usersFinchRoutes = UsersFinchIOEndpointsV1Interpreter(usersGeneralApplicationInterpreter).routes
+  
+  //================================================================================
+  // Route: Root
+  //================================================================================
 
-  // ==== Routes as list
   private val routeCoproduct = // @todo Refactor to infrastructure and then
     applicationFinchRoutes :+:
       messageFinchRoutes :+:
       usersFinchRoutes
 
-  /// ==== Routes as service
+  //================================================================================
+  //  Services: Root
+  //================================================================================
+
   private val applicationService = finch.corsFilter.andThen(routeCoproduct.toService)
 
   /**
@@ -99,7 +130,7 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
    * @param mainMethodArgs Main method arguments
    */
   def runApplication(mainMethodArgs: Array[String]): Unit = {
-    val _ = Await.ready(Http.serve(addr = ":" ++ applicationConfig.serverPortNumber.toString, applicationService), 60.second)
+    val _ = Await.ready(Http.serve(addr = ":" ++ applicationConfig.serverPortNumber.toString, applicationService), Duration.Top)
   }
 
 }

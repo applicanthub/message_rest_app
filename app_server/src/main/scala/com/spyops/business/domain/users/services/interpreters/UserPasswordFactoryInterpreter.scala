@@ -7,7 +7,6 @@ import com.spyops.business.domain.users.models.values.UserPassword.Repr
 import com.spyops.business.domain.users.services.UserPasswordFactoryAlgebra
 import com.spyops.scaffolding.application.errors.ModelValidationError
 import com.spyops.utils.regex.syntax._
-
 import scala.util.matching.Regex
 
 /**

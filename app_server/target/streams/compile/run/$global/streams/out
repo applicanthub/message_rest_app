@@ -1,7 +1,7 @@
 [0m[[0minfo[0m] [0mRunning com.spyops.SpyChatApplication [0m
 [0m[[0mdebug[0m] [0mWaiting for threads to exit or System.exit to be called.[0m
 [0m[[0mdebug[0m] [0m  Classpath:[0m
-[0m[[0mdebug[0m] [0m	/home/nick/Documents/projects/scala/scala-finch-finagle-example/target/scala-2.12/classes[0m
+[0m[[0mdebug[0m] [0m	/home/nick/Documents/qlik/app_server/target/scala-2.12/classes[0m
 [0m[[0mdebug[0m] [0m	/home/nick/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.7.jar[0m
 [0m[[0mdebug[0m] [0m	/home/nick/.ivy2/cache/com.github.finagle/finchx-core_2.12/jars/finchx-core_2.12-0.26.0.jar[0m
 [0m[[0mdebug[0m] [0m	/home/nick/.ivy2/cache/com.chuusai/shapeless_2.12/bundles/shapeless_2.12-2.3.3.jar[0m
@@ -102,83 +102,3 @@
 [0m[[0mdebug[0m] [0m	/home/nick/.ivy2/cache/org.bouncycastle/bcpkix-jdk15on/jars/bcpkix-jdk15on-1.60.jar[0m
 [0m[[0mdebug[0m] [0m	/home/nick/.ivy2/cache/org.bouncycastle/bcprov-jdk15on/jars/bcprov-jdk15on-1.60.jar[0m
 [0m[[0mdebug[0m] [0mWaiting for thread run-main-0 to terminate.[0m
-[0m[[31merror[0m] [0m(run-main-0) com.twitter.util.TimeoutException: 1.minutes[0m
-com.twitter.util.TimeoutException: 1.minutes
-	at com.twitter.util.Promise.ready(Promise.scala:637)
-	at com.twitter.util.CloseAwaitably0.ready(Awaitable.scala:213)
-	at com.twitter.util.CloseAwaitably0.ready$(Awaitable.scala:212)
-	at com.twitter.finagle.server.ListeningStackServer$$anon$1.ready(ListeningStackServer.scala:39)
-	at com.twitter.finagle.server.ListeningStackServer$$anon$1.ready(ListeningStackServer.scala:39)
-	at com.twitter.util.Await$.$anonfun$ready$1(Awaitable.scala:135)
-	at com.twitter.concurrent.LocalScheduler$Activation.blocking(Scheduler.scala:220)
-	at com.twitter.concurrent.LocalScheduler.blocking(Scheduler.scala:287)
-	at com.twitter.concurrent.Scheduler$.blocking(Scheduler.scala:116)
-	at com.twitter.util.Await$.ready(Awaitable.scala:135)
-	at com.spyops.bootstrap.interpreters.BootstrapInterpreter.runApplication(BootstrapInterpreter.scala:102)
-	at com.spyops.SpyChatApplication$.main(SpyChatApplication.scala:42)
-	at com.spyops.SpyChatApplication.main(SpyChatApplication.scala)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at sbt.Run.invokeMain(Run.scala:67)
-	at sbt.Run.run0(Run.scala:61)
-	at sbt.Run.sbt$Run$$execute$1(Run.scala:51)
-	at sbt.Run$$anonfun$run$1.apply$mcV$sp(Run.scala:55)
-	at sbt.Run$$anonfun$run$1.apply(Run.scala:55)
-	at sbt.Run$$anonfun$run$1.apply(Run.scala:55)
-	at sbt.Logger$$anon$4.apply(Logger.scala:84)
-	at sbt.TrapExit$App.run(TrapExit.scala:248)
-	at java.lang.Thread.run(Thread.java:748)
-[0m[[0mdebug[0m] [0m	Thread run-main-0 exited.[0m
-[0m[[0mdebug[0m] [0mInterrupting remaining threads (should be all daemons).[0m
-[0m[[0mdebug[0m] [0mInterrupting thread finagle/netty4-2-4[0m
-[0m[[0mdebug[0m] [0m	Interrupted finagle/netty4-2-4[0m
-[0m[[0mdebug[0m] [0mInterrupting thread doobie-fromDriverManager-pool-74[0m
-[0m[[0mdebug[0m] [0m	Interrupted doobie-fromDriverManager-pool-74[0m
-[0m[[0mdebug[0m] [0mInterrupting thread util-jvm-timer-1[0m
-[0m[[0mdebug[0m] [0m	Interrupted util-jvm-timer-1[0m
-[0m[[0mdebug[0m] [0mInterrupting thread finagle/netty4/boss-1[0m
-[0m[[0mdebug[0m] [0m	Interrupted finagle/netty4/boss-1[0m
-[0m[[0mdebug[0m] [0mInterrupting thread finagle/netty4-2-2[0m
-[0m[[0mdebug[0m] [0m	Interrupted finagle/netty4-2-2[0m
-[0m[[0mdebug[0m] [0mInterrupting thread finagle/netty4-2-6[0m
-[0m[[0mdebug[0m] [0m	Interrupted finagle/netty4-2-6[0m
-[0m[[0mdebug[0m] [0mInterrupting thread finagle/netty4-2-1[0m
-[0m[[0mdebug[0m] [0m	Interrupted finagle/netty4-2-1[0m
-[0m[[0mdebug[0m] [0mInterrupting thread Thread-1[0m
-[0m[[0mdebug[0m] [0m	Interrupted Thread-1[0m
-[0m[[0mdebug[0m] [0mInterrupting thread finagle/netty4-2-7[0m
-[0m[[0mdebug[0m] [0m	Interrupted finagle/netty4-2-7[0m
-[0m[[0mdebug[0m] [0mInterrupting thread Netty 4 Timer-1[0m
-[0m[[0mdebug[0m] [0m	Interrupted Netty 4 Timer-1[0m
-[0m[[0mdebug[0m] [0mInterrupting thread finagle/netty4-2-5[0m
-[0m[[0mdebug[0m] [0m	Interrupted finagle/netty4-2-5[0m
-[0m[[0mdebug[0m] [0mInterrupting thread finagle/netty4-2-3[0m
-[0m[[0mdebug[0m] [0m	Interrupted finagle/netty4-2-3[0m
-[0m[[0mdebug[0m] [0mSandboxed run complete..[0m
-java.lang.RuntimeException: Nonzero exit code: 1
-	at scala.sys.package$.error(package.scala:27)
-	at sbt.Defaults$$anonfun$runTask$1$$anonfun$apply$47$$anonfun$apply$48$$anonfun$apply$49.apply(Defaults.scala:803)
-	at sbt.Defaults$$anonfun$runTask$1$$anonfun$apply$47$$anonfun$apply$48$$anonfun$apply$49.apply(Defaults.scala:803)
-	at scala.Option.foreach(Option.scala:236)
-	at sbt.Defaults$$anonfun$runTask$1$$anonfun$apply$47$$anonfun$apply$48.apply(Defaults.scala:803)
-	at sbt.Defaults$$anonfun$runTask$1$$anonfun$apply$47$$anonfun$apply$48.apply(Defaults.scala:801)
-	at scala.Function1$$anonfun$compose$1.apply(Function1.scala:47)
-	at sbt.$tilde$greater$$anonfun$$u2219$1.apply(TypeFunctions.scala:40)
-	at sbt.std.Transform$$anon$4.work(System.scala:63)
-	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:228)
-	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:228)
-	at sbt.ErrorHandling$.wideConvert(ErrorHandling.scala:17)
-	at sbt.Execute.work(Execute.scala:237)
-	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:228)
-	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:228)
-	at sbt.ConcurrentRestrictions$$anon$4$$anonfun$1.apply(ConcurrentRestrictions.scala:159)
-	at sbt.CompletionService$$anon$2.call(CompletionService.scala:28)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at java.lang.Thread.run(Thread.java:748)
-[0m[[31merror[0m] [0m(compile:[31mrun[0m) Nonzero exit code: 1[0m
