@@ -17,7 +17,7 @@ const config = {
   },
   serve: {
     host: 'localhost',
-    port: 80,
+    port: 3000,
   },
   optimization: {
     splitChunks: {

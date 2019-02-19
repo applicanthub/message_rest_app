@@ -14,8 +14,13 @@
                       </div>
                       <div class="dropdown all_conversation">
                           <button class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fa fa-weixin" aria-hidden="true"></i> All Conversations
+                                   <div><strong>Message details:</strong></div>
                           </button>
+                          <div>
+                            <pre>
+                              {{ inspectedMessage }}
+                            </pre>
+                          </div>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                               <li><a href="#"> All Conversation </a>
                                   <ul class="sub_menu_ list-unstyled">
@@ -30,25 +35,6 @@
                               <li><a href="#">Separated link</a></li>
                           </ul>
                       </div>
-                      <div class="member_list">
-                          <ul class="list-unstyled">
-
-                              <li class="left clearfix" v-for="(message, index) in messages">
-                                  <span class="chat-img pull-left">
-                           <img src="https://dumagueteinfo.com/classifieds/rentals/app/uploads/2017/03/user.png" alt="User Avatar" class="img-circle">
-                           </span>
-                                  <div class="chat-body clearfix">
-                                      <div class="header_sec">
-                                          <strong class="primary-font">Jack Sparrow</strong> <strong class="pull-right">
-                                 09:45AM</strong>
-                                      </div>
-                                      <div class="contact_sec">
-                                          <strong class="primary-font">...</strong> <span class="badge pull-right">3</span>
-                                      </div>
-                                  </div>
-                              </li>
-                          </ul>
-                      </div>
                   </div>
               </div>
               <!--chat_sidebar-->
@@ -56,50 +42,50 @@
               <div class="col-sm-9 message_section">
                   <div class="row">
                       <div class="new_message_head">
-                          <div class="pull-left">
-                              <button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Message</button>
-                          </div>
-                          <div class="pull-right">
-                              <div class="dropdown">
-                                  <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <i class="fa fa-cogs" aria-hidden="true"></i> Setting
-                                      <span class="caret"></span>
-                                  </button>
-                                  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                                      <li><a href="#">Action</a></li>
-                                      <li><a href="#">Profile</a></li>
-                                      <li><a href="#">Logout</a></li>
-                                  </ul>
+                          <div class="col-md-12">
+                              <div class="pull-left">
+                                  <button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Message</button>
+                              </div>
+                              <div class="pull-right">
+                                  <div class="dropdown">
+                                      <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          <i class="fa fa-cogs" aria-hidden="true"></i> Setting
+                                          <span class="caret"></span>
+                                      </button>
+                                      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                                          <li><a href="#">Action</a></li>
+                                          <li><a href="#">Profile</a></li>
+                                          <li><a href="#">Logout</a></li>
+                                      </ul>
+                                  </div>
                               </div>
                           </div>
                       </div>
                       <!--new_message_head-->
-
                       <div class="chat_area">
                           <ul class="list-unstyled">
-
-                              <li class="left clearfix admin-chat" v-for="(message, index) in messages">
-                                  <span class="chat-img1 pull-left">
-                           <img src="https://banner2.kisspng.com/20180630/ltq/kisspng-computer-icons-user-avatar-clip-art-skincare-cartoon-5b371025a6d8a7.5354815915303352696834.jpg" alt="User Avatar" class="img-circle">
-                           </span>
-                                  <div class="chat-body1 clearfix">
-                                      <p>{{message.content}}</p>
-                                      <div v-show="message.detailsVisible">
-                                          <div><strong>MessageId:</strong>{{ message.messageId }}</div>
-                                          <div><strong>SenderId:</strong>{{ message.senderId }}</div>
-                                          <div><strong>RecipientId:</strong>{{ message.recipientId }}</div>
+                              <li v-if="!message.isDeleted" class="left clearfix admin-chat" v-for="(message, index) in messages">
+                                  <span class="chat-img1 pull-left"  >
+                                   <img src="https://banner2.kisspng.com/20180630/ltq/kisspng-computer-icons-user-avatar-clip-art-skincare-cartoon-5b371025a6d8a7.5354815915303352696834.jpg" alt="User Avatar" class="img-circle">
+                                   </span>
+                                      <div class="chat-body1 clearfix">
+                                          <p>{{message.content}}</p>
+                                          <div class="text-danger pull-left" v-if="isPalindrome(message.content)">
+                                            <strong>Is Palindrome</strong>
+                                          </div>
+                                          <div class="chat_time pull-right">
+                                            <button class="btn btn-primary"
+                                                  v-on:click="toggleMessageDetailsVisible(message)" >
+                                              View Message Details
+                                            </button>
+                                            <button class="btn btn-danger"
+                                                  v-on:click="deleteMessage(message.messageId)" >
+                                                  Delete Message
+                                            </button>
+                                          </div>
                                       </div>
-                                      <div class="text-danger pull-left" v-if="isPalindrome(message.content)">
-                                        <strong>Is Palindrome</strong>
-                                      </div>
-                                      <div class="chat_time pull-right">
-                                        <button class="btn btn-primary"
-                                              v-on:click="toggleMessageDetailsVisible(message.messageId)" >
-                                          Details
-                                        </button>
-                                      </div>
-                                  </div>
                               </li>
+                              <li v-else >Deleted 😢 (Id: {{message.messageId }})</li>
                               <li class="left clearfix admin_chat">
                                   <span class="chat-img1 pull-right">
                            <img src="https://dumagueteinfo.com/classifieds/rentals/app/uploads/2017/03/user.png" alt="User Avatar" class="img-circle">
@@ -141,6 +127,7 @@ export default {
       recipientId: '717f7c2b-9e9d-463b-872a-170031c8dbed',
       messageBody: 'Hi there',
       messages: [],
+      inspectedMessage: null
     };
   },
   created() {
@@ -150,33 +137,30 @@ export default {
     init () {
       this.getMessages();
     },
-    toggleMessageDetailsVisible (messageId) {
-      this.messages = this.messages.map((record) => {
-        if(record.messageId === messageId){
-          recordClone = {
-            content: r.content,
-            detailsVisible: !r.detailsVisible,
-            isDeleted: r.isDeleted,
-            messageId: r.messageId,
-            recipientId: r.recipientId,
-            senderId: r.senderId
-          };
-          return recordClone;
-        }
-        return record;
+    deleteMessage(messageId) {
+      api.delete(`/v1/messages/${messageId}`)
+      .then(response => {
+        alert(`Message deleted ${messageId}.`)
+        this.init();
+      });
+    },
+    toggleMessageDetailsVisible (message) {
+      api.get(`/v1/messages/${message.messageId}`)
+      .then(response => {
+          this.inspectedMessage = response.data;
       });
     },
     getMessages () {
         api.get(`/v1/messages/sender/${this.senderId}/receiver/${this.recipientId}`)
         .then(response => {
-          this.messages = response.data.map((r) =>  {
+          this.messages = response.data.map((item) =>  {
               return {
-                content: r.content,
+                content: item.content,
                 detailsVisible: false,
-                isDeleted: r.isDeleted,
-                messageId: r.messageId,
-                recipientId: r.recipientId,
-                senderId: r.senderId
+                isDeleted: item.isDeleted,
+                messageId: item.messageId,
+                recipientId: item.recipientId,
+                senderId: item.senderId
               }
           });
         });
