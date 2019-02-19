@@ -5,8 +5,7 @@ import cats.effect.IO
 
 import scala.concurrent.ExecutionContext
 import io.finch.circe._
-import com.twitter.finagle.Http
-import com.twitter.conversions.DurationOps._
+import com.twitter.finagle.Http 
 import com.twitter.util.{ Await, Duration }
 import com.spyops.bootstrap.BootstrapAlgebra
 import com.spyops.business.application.messages.services.interpreters.MessageGeneralApplicationControllerInterpreter
