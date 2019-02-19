@@ -74,7 +74,7 @@ final class MessageEndpointsInterpreters(
   /**
    * Endpoint: View message by id.
    *
-   * GET /v1/messages/:[[MessageId.Repr]]
+   * GET v1/messages/sender/:sender/receiver/:receiver
    *
    * @author Nick Odumo Feb 2019
    */
