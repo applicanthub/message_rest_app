@@ -1,0 +1,5 @@
+[0m[[0minfo[0m] [0m[32mExampleSpec:[0m[0m
+[0m[[0minfo[0m] [0m[32mthe hello endpoint[0m[0m
+[0m[[0minfo[0m] [0m[32m- should get 'Hello, world!'[0m[0m
+[0m[[0minfo[0m] [0m[32mthe accept endpoint[0m[0m
+[0m[[0minfo[0m] [0m[32m- should post our message[0m[0m

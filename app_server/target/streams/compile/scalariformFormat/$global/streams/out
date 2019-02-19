@@ -1,0 +1,2 @@
+[0m[[0minfo[0m] [0mFormatting 1 Scala source {file:/home/nick/Documents/projects/scala/scala-finch-finagle-example/}root(compile) ...[0m
+[0m[[33mwarn[0m] [0mScalariform parser error for /home/nick/Documents/projects/scala/scala-finch-finagle-example/src/main/scala/com/spyops/infrastructure/endpoints/finch/package.scala: illegal start of simple expression: Token(RPAREN,),917,))[0m
