@@ -45,7 +45,6 @@ final class MessageEndpointsInterpreters(
   def sendMessage: FinchIOEndpoint[MessageDTO] =
     post("v1" :: "messages" :: jsonBody[CreateMessageCommand]) { createMessageCommand: CreateMessageCommand =>
       messageGeneralApplicationController.sendMessage(createMessageCommand).map({
-
         case Some(messageDTO) =>
           logRequesContext(s"Messages::Error:: Messages created (${messageDTO}).")
           // HTTP code: 200 - Created
