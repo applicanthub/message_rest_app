@@ -40,6 +40,7 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
       pass = "d1WRSNjK4cUe61S-EebX_wimPyTIyq_2")
 
   // ==== Domain services: Message
+  
   private val messageIdFactoryInterpreter: MessageIdFactoryInterpreter = MessageIdFactoryInterpreter.apply
   private val senderIdFactoryInterpreter: SenderIdFactoryInterpreter = SenderIdFactoryInterpreter.apply
   private val recipientIdFactoryInterpreter: RecipientIdFactoryInterpreter = RecipientIdFactoryInterpreter.apply
@@ -54,13 +55,16 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
       bodyFactoryInterpreter)
 
   // ==== Domain services: Users
+  
   private implicit val usernameFactoryInterpreter: UsernameFactoryInterpreter = UsernameFactoryInterpreter.apply
 
   // ==== Repositories: All
+  
   private implicit val messageDoobieRepository = MessageDoobieRepositoryInterpreter.apply(doobieTranscation)
   private implicit val userDoobieRepository = UserRepositoryDoobieFInterpreter.apply(doobieTranscation)
 
   // ==== Application: Messages
+
   private val createUserToken = CreateUserTokenHS256Interpreter.apply("ExC>&QpG8_Bcnp6Tvz(/XR3/rES;wj(R7Ytv(f-")
   private val messageGeneralApplicationInterpreter =
     MessageGeneralApplicationControllerInterpreter(
@@ -71,13 +75,15 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
       messageDoobieRepository)
 
   // ==== Application: Users
+  
   private val usersGeneralApplicationInterpreter =
     UsersGeneralApplicationInterpreter(
       createUserToken,
       usernameFactoryInterpreter,
       userDoobieRepository)
-
-  // Wire up infrastructure (endpoints)
+  
+  // ==== Endpoints
+  
   private val applicationFinchRoutes = HealthFinchIOEndpointsInterpreter.apply.routes
   private val messageFinchRoutes = MessageEndpointsInterpreters(messageGeneralApplicationInterpreter).routes
   private val usersFinchRoutes = UsersFinchIOEndpointsV1Interpreter(usersGeneralApplicationInterpreter).routes
@@ -89,6 +95,7 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
       usersFinchRoutes
 
   /// ==== Routes as service
+  
   private val applicationService = finch.corsFilter.andThen(routeCoproduct.toService)
 
   /**
