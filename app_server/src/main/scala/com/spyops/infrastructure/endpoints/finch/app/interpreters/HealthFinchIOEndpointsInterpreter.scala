@@ -24,6 +24,7 @@ final class HealthFinchIOEndpointsInterpreter extends HealthEndpointsAlgebra {
   def healthCheckJson: FinchIOEndpoint[Json] = get("health.json") {
     Ok(Json.obj("status" -> Json.fromString(OK)))
   }
+  
 }
 
 object HealthFinchIOEndpointsInterpreter {
