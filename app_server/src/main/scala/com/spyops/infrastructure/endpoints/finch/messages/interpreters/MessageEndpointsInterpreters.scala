@@ -35,6 +35,10 @@ final class MessageEndpointsInterpreters(
       viewMessageBySenderBetween :+:
       deleteMessage
 
+
+
+  private val v1_messages = "v1" :: "messages"
+
   /**
    * Endpoint: Send message.
    *
@@ -47,7 +51,7 @@ final class MessageEndpointsInterpreters(
    * @author Nick Odumo Feb 2019
    */
   def sendMessage: FinchIOEndpoint[MessageDTO] =
-    post("v1" :: "messages" :: jsonBody[CreateMessageCommand]) { createMessageCommand: CreateMessageCommand =>
+    post(v1_messages :: jsonBody[CreateMessageCommand]) { createMessageCommand: CreateMessageCommand =>
       messageGeneralApplicationController.sendMessage(createMessageCommand).map({
         case Some(messageDTO) =>
           logRequesContext(s"Messages::Error:: Messages created (${messageDTO}).")
@@ -69,7 +73,7 @@ final class MessageEndpointsInterpreters(
    * @author Nick Odumo Feb 2019
    */
   def viewMessageById: FinchIOEndpoint[MessageDTO] =
-    get("v1" :: "messages" :: path[MessageId.Repr]) { messageId: MessageId.Repr =>
+    get(v1_messages :: path[MessageId.Repr]) { messageId: MessageId.Repr =>
       messageGeneralApplicationController.viewMessageById(messageId).map({
         case Some(messageDTO) =>
           Ok(messageDTO)
@@ -89,7 +93,7 @@ final class MessageEndpointsInterpreters(
    * @author Nick Odumo Feb 2019
    */
   def viewMessageBySenderBetween: FinchIOEndpoint[List[MessageDTO]] =
-    get("v1" :: "messages" :: "sender" :: path[SenderId.Repr] :: "receiver" :: path[RecipientId.Repr]) { (senderId: SenderId.Repr, recipientId: RecipientId.Repr) =>
+    get(v1_messages :: "sender" :: path[SenderId.Repr] :: "receiver" :: path[RecipientId.Repr]) { (senderId: SenderId.Repr, recipientId: RecipientId.Repr) =>
       messageGeneralApplicationController.viewMessagesSentBetweenUsers((senderId, recipientId)).map(Ok)
     }
 
@@ -105,7 +109,7 @@ final class MessageEndpointsInterpreters(
    * @author Nick Odumo Feb 2019
    */
   def deleteMessage: FinchIOEndpoint[MessageId.Repr] =
-    delete("v1" :: "messages" :: path[MessageId.Repr]) { messageIdRepr: MessageId.Repr =>
+    delete(v1_messages :: path[MessageId.Repr]) { messageIdRepr: MessageId.Repr =>
       messageGeneralApplicationController.deleteMessage(messageIdRepr).map({
         case Some(messageId) =>
           Ok(messageId.value)
