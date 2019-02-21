@@ -87,7 +87,6 @@ final class MessageEndpointsInterpreters(
    */
   def viewMessageBySenderBetween: FinchIOEndpoint[List[MessageDTO]] =
     get("v1" :: "messages" :: "sender" :: path[SenderId.Repr] :: "receiver" :: path[RecipientId.Repr]) { (senderId: SenderId.Repr, recipientId: RecipientId.Repr) =>
-      // 
       messageGeneralApplicationController.viewMessagesSentBetweenUsers((senderId, recipientId)).map(Ok)
     }
 
