@@ -14,6 +14,9 @@ import io.finch.Output
 /**
  * Swagger-spec endpoint.
  *
+ * IMPORTANT: Make sure the wiring for the Swagger definition happens in the component happens in the right order!
+ *            The object is mutable and you need to make sure that all of the routes have been added in the right order before this one.
+ *
  * @author Nick Odumo Feb 2019
  * @param swagger Swagger defined spec.
  */
