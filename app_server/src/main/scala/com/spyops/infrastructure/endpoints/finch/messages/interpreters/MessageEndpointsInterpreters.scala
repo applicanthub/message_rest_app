@@ -60,16 +60,18 @@ final class MessageEndpointsInterpreters(
    *
    * GET /v1/messages/:[[MessageId.Repr]]
    *
+   * Returns:
+   * HTTP code: 200 - Found message
+   * HTTP code: 404 - Could not find the record that is to be deleted
+   *
    * @author Nick Odumo Feb 2019
    */
   def viewMessageById: FinchIOEndpoint[MessageDTO] =
     get("v1" :: "messages" :: path[MessageId.Repr]) { messageId: MessageId.Repr =>
       messageGeneralApplicationController.viewMessageById(messageId).map({
         case Some(messageDTO) => 
-          // HTTP code: 200 - Found message
           Ok(messageDTO)
-        case None =>
-          // HTTP code: 404 - Could not find the record that is to be deleted
+        case None => 
           NotFound(new Exception(s"Messages::Error:: Messages(${messageId}) not found."))
       })
     }
