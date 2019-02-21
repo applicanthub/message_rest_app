@@ -13,6 +13,7 @@ trait HealthEndpointsAlgebra {
   /**
    * Health-checker.
    *
+   * Route:
    * GET /health
    *
    * Returns:
@@ -24,7 +25,8 @@ trait HealthEndpointsAlgebra {
 
   /**
    * Health-checker.
-   *
+   * 
+   * Route:
    * GET /health.json
    *
    * Returns:
