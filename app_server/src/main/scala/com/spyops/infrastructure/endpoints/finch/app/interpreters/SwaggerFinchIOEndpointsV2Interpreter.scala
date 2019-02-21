@@ -17,6 +17,9 @@ import io.finch.Output
  * IMPORTANT: Make sure the wiring for the Swagger definition happens in the component happens in the right order!
  *            The object is mutable and you need to make sure that all of the routes have been added in the right order before this one.
  *
+ *
+ * @see https://swagger.io/docs/specification/2-0/basic-structure/
+ *
  * @author Nick Odumo Feb 2019
  * @param swagger Swagger defined spec.
  */
