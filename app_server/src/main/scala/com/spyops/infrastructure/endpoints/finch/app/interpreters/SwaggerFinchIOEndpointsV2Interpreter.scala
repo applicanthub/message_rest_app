@@ -34,9 +34,11 @@ final class SwaggerFinchIOEndpointsV2Interpreter(swagger: Swagger) extends Swagg
   def swaggerAsJSON: FinchIOEndpoint[Json] = get("docs" :: "swagger.json" :: apiVersion) { _: Int =>
     Ok(parse(SwaggerJson.mapper.writeValueAsString(swagger)).getOrElse(Json.Null))
   }
+  
   def swaggerExplorerV1: FinchIOEndpoint[Json] = get("docs" :: "swagger" :: "v1") {
     Ok(parse(SwaggerJson.mapper.writeValueAsString(swagger)).getOrElse(Json.Null))
   }
+  
   def swaggerExplorerLatest: FinchIOEndpoint[Unit] = get("docs" :: "swagger" :: "latest") {
     Output.unit(Status.SeeOther).withHeader(header = "Location" -> s"docs/swagger/${LATEST_API_VERSION}")
   }
