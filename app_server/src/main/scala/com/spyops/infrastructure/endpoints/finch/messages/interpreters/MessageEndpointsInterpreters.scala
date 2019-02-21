@@ -35,8 +35,6 @@ final class MessageEndpointsInterpreters(
       viewMessageBySenderBetween :+:
       deleteMessage
 
-
-
   private val v1_messages = "v1" :: "messages"
 
   /**
