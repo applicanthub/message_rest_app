@@ -4,7 +4,9 @@ import scala.util.matching.Regex
 
 object syntax {
 
-  implicit class RichRegex(val underlying: Regex) extends AnyVal {
+  implicit def richRegex(underlying: Regex) = new RichRegex(underlying)
+
+  final class RichRegex(underlying: Regex) extends {
     def matches(s: String): Boolean = underlying.pattern.matcher(s).matches
   }
 }
