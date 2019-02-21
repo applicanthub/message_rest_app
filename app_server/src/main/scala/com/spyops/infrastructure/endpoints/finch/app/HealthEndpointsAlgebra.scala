@@ -20,7 +20,7 @@ trait HealthEndpointsAlgebra {
   /**
    * Health-checker.
    *
-   * GET /health
+   * GET /health.json
    *
    * Returns:
    * HTTP code: 200 - { status: "OK" } : { status: String }
