@@ -5,12 +5,7 @@ import com.spyops.infrastructure.endpoints.finch.app.HealthEndpointsAlgebra
 import io.circe.Json
 import io.finch._
 import io.finch.catsEffect._
-
-/**
- * Health check API endpoint.
- *
- * @author Nick Odumo Feb 2019
- */
+ 
 final class HealthFinchIOEndpointsInterpreter extends HealthEndpointsAlgebra {
 
   private val OK: String = "OK"
