@@ -16,6 +16,7 @@ libraryDependencies ++= {
     "com.github.finagle" %% "finchx-core" % finchVersion,
     "com.github.finagle" %% "finchx-circe" % finchVersion,
     "com.github.finagle" %% "finch-argonaut" % finchVersion,
+    "com.jakehschwartz"  % "finatra-swagger_2.12" %"18.4.0",
     "com.twitter" %% "finagle-http" % finagleVersion,
     "com.twitter" %% "finagle-mysql" % finagleVersion,
     "io.circe" %% "circe-generic" % circeVersion,

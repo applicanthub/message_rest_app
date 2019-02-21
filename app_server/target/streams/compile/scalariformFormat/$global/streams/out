@@ -1,3 +1,0 @@
-[0m[[0minfo[0m] [0mFormatting 97 Scala sources {file:/root/message_rest_app/app_server/}root(compile) ...[0m
-[0m[[33mwarn[0m] [0mScalariform parser error for /root/message_rest_app/app_server/src/main/scala/com/spyops/infrastructure/endpoints/finch/package.scala: illegal start of simple expression: Token(RPAREN,),927,))[0m
-[0m[[0minfo[0m] [0mReformatted 1 Scala source {file:/root/message_rest_app/app_server/}root(compile).[0m
