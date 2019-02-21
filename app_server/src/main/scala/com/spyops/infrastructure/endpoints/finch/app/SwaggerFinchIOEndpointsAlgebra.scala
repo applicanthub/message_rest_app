@@ -9,7 +9,7 @@ trait SwaggerFinchIOEndpointsAlgebra {
    * Swagger JSON definition.
    *
    * Route:
-   * GET /docs/swagger?apiVersion=:version 
+   * GET /docs/swagger?apiVersion=:version
    *
    * @author Nick Odumo Feb 2019
    */
@@ -19,7 +19,7 @@ trait SwaggerFinchIOEndpointsAlgebra {
    * Swagger API explorer (Version: v1).
    *
    * Route:
-   * GET /docs/swagger.json?apiVersion=:version 
+   * GET /docs/swagger.json?apiVersion=:version
    *
    * @author Nick Odumo Feb 2019
    */
@@ -29,7 +29,7 @@ trait SwaggerFinchIOEndpointsAlgebra {
    * Swagger API explorer(Version: Latest).
    *
    * Route:
-   * GET /docs/swagger.json?apiVersion=:version 
+   * GET /docs/swagger.json?apiVersion=:version
    *
    * @author Nick Odumo Feb 2019
    */
