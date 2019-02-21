@@ -52,7 +52,7 @@ final class MessageEndpointsInterpreters(
         case Some(messageDTO) =>
           logRequesContext(s"Messages::Error:: Messages created (${messageDTO}).")
           Created(messageDTO)
-        case None => 
+        case None =>
           NotFound(new Exception(s"Messages::Error:: Messages not created."))
       })
     }
@@ -71,9 +71,9 @@ final class MessageEndpointsInterpreters(
   def viewMessageById: FinchIOEndpoint[MessageDTO] =
     get("v1" :: "messages" :: path[MessageId.Repr]) { messageId: MessageId.Repr =>
       messageGeneralApplicationController.viewMessageById(messageId).map({
-        case Some(messageDTO) => 
+        case Some(messageDTO) =>
           Ok(messageDTO)
-        case None => 
+        case None =>
           NotFound(new Exception(s"Messages::Error:: Messages(${messageId}) not found."))
       })
     }
@@ -107,9 +107,9 @@ final class MessageEndpointsInterpreters(
   def deleteMessage: FinchIOEndpoint[MessageId.Repr] =
     delete("v1" :: "messages" :: path[MessageId.Repr]) { messageIdRepr: MessageId.Repr =>
       messageGeneralApplicationController.deleteMessage(messageIdRepr).map({
-        case Some(messageId) => 
+        case Some(messageId) =>
           Ok(messageId.value)
-        case None =>  
+        case None =>
           NotFound(new Exception(s"Messages::Error:: Messages(${messageIdRepr}) not found."))
       })
     }

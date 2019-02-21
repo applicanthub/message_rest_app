@@ -4,6 +4,6 @@ import com.spyops.infrastructure.endpoints.finch.FinchIOEndpoint
 
 trait HealthEndpointsAlgebra {
 
-  def healthcheckStringOK: FinchIOEndpoint[String]
+  def healthCheckString: FinchIOEndpoint[String]
 
 }

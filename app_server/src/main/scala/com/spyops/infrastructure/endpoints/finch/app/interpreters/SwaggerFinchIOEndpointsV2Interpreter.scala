@@ -1,0 +1,63 @@
+package com.spyops.infrastructure.endpoints.finch.app.interpreters
+
+import com.spyops.infrastructure.endpoints.finch.FinchIOEndpoint
+import com.spyops.infrastructure.endpoints.finch.app.SwaggerFinchIOEndpointsAlgebra
+import com.twitter.finagle.http.Status
+import io.circe.Json
+import io.circe.parser.parse
+import io.finch.{ Ok }
+import io.finch.catsEffect.{ get, path, param }
+import io.swagger.models.Swagger
+import io.swagger.util.{ Json => SwaggerJson }
+import io.finch.Output
+
+/**
+ * Swagger-spec endpoint.
+ *
+ * @author Nick Odumo Feb 2019
+ * @param swagger Swagger defined spec.
+ */
+final class SwaggerFinchIOEndpointsV2Interpreter(swagger: Swagger) extends SwaggerFinchIOEndpointsAlgebra {
+
+  lazy val routes =
+    swaggerAsJSON :+:
+      swaggerExplorerV1 :+:
+      swaggerExplorerLatest
+
+  private val apiVersion = param[Int](name = "version")
+
+  /**
+    * Swagger JSON definition.
+    *
+    * @author Nick Odumo Feb 2019
+    */
+  def swaggerAsJSON: FinchIOEndpoint[Json] = get("docs" :: "swagger.json" :: apiVersion) { _: Int =>
+    Ok(parse(SwaggerJson.mapper.writeValueAsString(swagger)).getOrElse(Json.Null))
+  }
+
+  /**
+    * Swagger API explorer (Version: v1).
+    *
+    * @author Nick Odumo Feb 2019
+    */
+  def swaggerExplorerV1: FinchIOEndpoint[Json] = get("docs" :: "swagger" :: "v1") {
+    Ok(parse(SwaggerJson.mapper.writeValueAsString(swagger)).getOrElse(Json.Null))
+  }
+
+  /**
+    * Swagger API explorer(Version: Latest).
+    *
+    * @author Nick Odumo Feb 2019
+    */
+  def swaggerExplorerLatest: FinchIOEndpoint[Unit] = get("docs" :: "swagger" :: "latest") {
+    Output.unit(Status.SeeOther).withHeader(header = "Location" -> "docs/swagger/v1")
+  }
+
+}
+
+object SwaggerFinchIOEndpointsV2Interpreter {
+
+  def apply(swagger: Swagger): SwaggerFinchIOEndpointsV2Interpreter =
+    new SwaggerFinchIOEndpointsV2Interpreter(swagger)
+
+}

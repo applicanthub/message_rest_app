@@ -1,10 +1,16 @@
 package com.spyops.infrastructure.endpoints.finch
 
 import com.jakehschwartz.finatra.swagger.SwaggerModule
-import com.spyops.infrastructure.endpoints.finch.ServiceSwaggerModule.ServiceSwaggerConfig
-import io.swagger.models.{Contact, Info, License, Swagger}
+import com.spyops.configs.ServiceSwaggerConfig
+import io.swagger.models.{ Contact, Info, Swagger }
 import io.swagger.models.auth.BasicAuthDefinition
 
+/**
+ * Service swagger module.
+ *
+ * @author Nick Odumo Feb 2019
+ * @param config Swagger configuration
+ */
 class ServiceSwaggerModule(config: ServiceSwaggerConfig) extends SwaggerModule {
 
   private val swaggerUI = new Swagger()
@@ -19,10 +25,10 @@ class ServiceSwaggerModule(config: ServiceSwaggerConfig) extends SwaggerModule {
 
     swaggerUI
       .info(info)
-      .addSecurityDefinition("sampleBasic", {
-        val d = new BasicAuthDefinition()
-        d.setType("basic")
-        d
+      .addSecurityDefinition("BasicAuth", {
+        val basicAuthDefinition = new BasicAuthDefinition()
+        basicAuthDefinition.setType("basic")
+        basicAuthDefinition
       })
 
     swaggerUI
@@ -32,13 +38,5 @@ class ServiceSwaggerModule(config: ServiceSwaggerConfig) extends SwaggerModule {
 object ServiceSwaggerModule {
 
   def apply(config: ServiceSwaggerConfig): ServiceSwaggerModule = new ServiceSwaggerModule(config)
-
-  final case class ServiceSwaggerConfig(
-    name: String = "Nickanor Odumo",
-    email: String = "odumowebdev@gmail.com",
-    title: String = "Application server module..",
-    description: String = "Application.",
-    version: String = "1",
-    license: License = new License())
 
 }

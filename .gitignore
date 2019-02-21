@@ -1,2 +1,6 @@
 
 app_server/\.idea/
+
+app_server/project/
+
+app_server/target/

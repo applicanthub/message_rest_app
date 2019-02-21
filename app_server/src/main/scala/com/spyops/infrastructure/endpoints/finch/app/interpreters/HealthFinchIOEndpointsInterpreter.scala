@@ -12,10 +12,12 @@ import io.finch.catsEffect._
  */
 final class HealthFinchIOEndpointsInterpreter extends HealthEndpointsAlgebra {
 
-  val routes = healthcheckStringOK
+  private val OK: String = "OK"
 
-  def healthcheckStringOK: FinchIOEndpoint[String] = get("health") {
-    Ok("OK")
+  val routes: FinchIOEndpoint[String] = healthCheckString
+
+  def healthCheckString: FinchIOEndpoint[String] = get("health") {
+    Ok(OK)
   }
 
 }
