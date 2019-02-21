@@ -27,7 +27,7 @@ final class SwaggerFinchIOEndpointsV2Interpreter(swagger: Swagger) extends Swagg
       swaggerExplorerV1 :+:
       swaggerExplorerLatest
 
-  private val LATEST_API_VERSION:Int = 1
+  private val LATEST_API_VERSION: Int = 1
 
   private val apiVersion = param[Int](name = "version")
 
