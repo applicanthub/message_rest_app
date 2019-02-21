@@ -40,6 +40,10 @@ final class MessageEndpointsInterpreters(
    *
    * GET /v1/messages [[CreateMessageCommand]]
    *
+   * Returns:
+   * HTTP code: 200 - Found message
+   * HTTP code: 404 - Could not find the record that is to be deleted
+   *
    * @author Nick Odumo Feb 2019
    */
   def sendMessage: FinchIOEndpoint[MessageDTO] =
@@ -47,10 +51,8 @@ final class MessageEndpointsInterpreters(
       messageGeneralApplicationController.sendMessage(createMessageCommand).map({
         case Some(messageDTO) =>
           logRequesContext(s"Messages::Error:: Messages created (${messageDTO}).")
-          // HTTP code: 200 - Created
           Created(messageDTO)
-        case None =>
-          // HTTP code: 404 - Could not find the record that is to be deleted
+        case None => 
           NotFound(new Exception(s"Messages::Error:: Messages not created."))
       })
     }
@@ -85,7 +87,7 @@ final class MessageEndpointsInterpreters(
    */
   def viewMessageBySenderBetween: FinchIOEndpoint[List[MessageDTO]] =
     get("v1" :: "messages" :: "sender" :: path[SenderId.Repr] :: "receiver" :: path[RecipientId.Repr]) { (senderId: SenderId.Repr, recipientId: RecipientId.Repr) =>
-      // HTTP code: 200 - Found messages
+      // 
       messageGeneralApplicationController.viewMessagesSentBetweenUsers((senderId, recipientId)).map(Ok)
     }
 
@@ -94,16 +96,18 @@ final class MessageEndpointsInterpreters(
    *
    * DELETE /v1/messages [[CreateMessageCommand]]
    *
+   * Returns:
+   * HTTP code: 200 - Found message
+   * HTTP code: 404 - Could not find the record that is to be deleted
+   *
    * @author Nick Odumo Feb 2019
    */
   def deleteMessage: FinchIOEndpoint[MessageId.Repr] =
     delete("v1" :: "messages" :: path[MessageId.Repr]) { messageIdRepr: MessageId.Repr =>
       messageGeneralApplicationController.deleteMessage(messageIdRepr).map({
-        case Some(messageId) =>
-          // HTTP code: 200 - Found and deleted
+        case Some(messageId) => 
           Ok(messageId.value)
-        case None => 
-           // HTTP code: 404 - Could not find the record that is to be deleted
+        case None =>  
           NotFound(new Exception(s"Messages::Error:: Messages(${messageIdRepr}) not found."))
       })
     }
