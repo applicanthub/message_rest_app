@@ -41,7 +41,7 @@ final class MessageEndpointsInterpreters(
    * GET /v1/messages [[CreateMessageCommand]]
    *
    * Returns:
-   * HTTP code: 200 - Found message
+   * HTTP code: 200 - Found message | HTTP body-JSON: [[MessageDTO]]
    * HTTP code: 404 - Could not find the record that is to be deleted
    *
    * @author Nick Odumo Feb 2019
@@ -63,7 +63,7 @@ final class MessageEndpointsInterpreters(
    * GET /v1/messages/:[[MessageId.Repr]]
    *
    * Returns:
-   * HTTP code: 200 - Found message
+   * HTTP code: 200 - Found message | HTTP body-JSON: [[MessageDTO]]
    * HTTP code: 404 - Could not find the record that is to be deleted
    *
    * @author Nick Odumo Feb 2019
@@ -82,6 +82,9 @@ final class MessageEndpointsInterpreters(
    * Endpoint: View message by id.
    *
    * GET v1/messages/sender/:[[[SenderId.Repr]]receiver/:[[RecipientId.Repr]]
+   *
+   * Returns:
+   * HTTP code: 200 - Found message | HTTP body-JSON: [[List[MessageDTO]]]
    *
    * @author Nick Odumo Feb 2019
    */
