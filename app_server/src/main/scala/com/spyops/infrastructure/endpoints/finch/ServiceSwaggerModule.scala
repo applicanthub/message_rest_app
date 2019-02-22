@@ -17,7 +17,9 @@ class ServiceSwaggerModule(config: ServiceSwaggerConfig) extends SwaggerModule {
 
   def swagger: Swagger = {
     val info = new Info()
-      .contact(new Contact().name(config.name).email(config.email))
+      .contact(new Contact()
+        .name(config.name)
+        .email(config.email))
       .title(config.title)
       .description(config.description)
       .version(config.version)

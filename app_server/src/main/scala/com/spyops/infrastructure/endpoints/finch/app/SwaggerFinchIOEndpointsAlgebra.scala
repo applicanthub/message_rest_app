@@ -1,9 +1,16 @@
 package com.spyops.infrastructure.endpoints.finch.app
 
 import com.spyops.infrastructure.endpoints.finch.FinchIOEndpoint
-import io.circe.Json
+import shapeless.{ :+:, CNil }
 
-trait SwaggerFinchIOEndpointsAlgebra {
+/**
+ * Swagger Finch endpoint
+ *
+ * @author Nick Odumo Feb 2019
+ */
+trait SwaggerFinchIOEndpointsAlgebra[Json] {
+
+  val routes: FinchIOEndpoint[Json :+: Json :+: Unit :+: CNil]
 
   /**
    * Swagger JSON definition.

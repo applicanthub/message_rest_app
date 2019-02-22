@@ -5,11 +5,12 @@ import com.spyops.infrastructure.endpoints.finch.app.SwaggerFinchIOEndpointsAlge
 import com.twitter.finagle.http.Status
 import io.circe.Json
 import io.circe.parser.parse
-import io.finch.{ Ok }
-import io.finch.catsEffect.{ get, path, param }
+import io.finch.Ok
+import io.finch.catsEffect.{ get, param, path }
 import io.swagger.models.Swagger
 import io.swagger.util.{ Json => SwaggerJson }
 import io.finch.Output
+import shapeless.{ :+:, CNil }
 
 /**
  * Swagger-spec endpoint.
@@ -23,9 +24,9 @@ import io.finch.Output
  * @author Nick Odumo Feb 2019
  * @param swagger Swagger defined spec.
  */
-final class SwaggerFinchIOEndpointsV2Interpreter(swagger: Swagger) extends SwaggerFinchIOEndpointsAlgebra {
+final class SwaggerFinchIOEndpointsV2Interpreter(swagger: Swagger) extends SwaggerFinchIOEndpointsAlgebra[Json] {
 
-  lazy val routes =
+  lazy val routes: FinchIOEndpoint[Json :+: Json :+: Unit :+: CNil] =
     swaggerAsJSON :+:
       swaggerExplorerV1 :+:
       swaggerExplorerLatest
