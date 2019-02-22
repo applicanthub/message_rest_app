@@ -7,6 +7,7 @@ import shapeless.{ :+:, CNil }
  * Swagger Finch endpoint
  *
  * @author Nick Odumo Feb 2019
+ * @param Json JSON response 
  */
 trait SwaggerFinchIOEndpointsAlgebra[Json] {
 
