@@ -117,7 +117,7 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   private val applicationFinchRoutes = HealthFinchIOEndpointsInterpreter.apply.routes
   private val messageFinchRoutes = MessageEndpointsInterpreters(messageGeneralApplicationInterpreter).routes
   private val usersFinchRoutes = UsersFinchIOEndpointsV1Interpreter(usersGeneralApplicationInterpreter).routes
-  
+
   //================================================================================
   // Route: Root
   //================================================================================
