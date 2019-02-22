@@ -20,7 +20,7 @@ trait SwaggerFinchIOEndpointsAlgebra[Json] {
    *
    * @author Nick Odumo Feb 2019
    */
-  def swaggerAsJSON: FinchIOEndpoint[Json]
+  def _swaggerAsJSON: FinchIOEndpoint[Json]
 
   /**
    * Swagger API explorer (Version: v1).
@@ -30,7 +30,7 @@ trait SwaggerFinchIOEndpointsAlgebra[Json] {
    *
    * @author Nick Odumo Feb 2019
    */
-  def swaggerExplorerV1: FinchIOEndpoint[Json]
+  def _swaggerExplorerV1: FinchIOEndpoint[Json]
 
   /**
    * Swagger API explorer(Version: Latest).
@@ -40,6 +40,6 @@ trait SwaggerFinchIOEndpointsAlgebra[Json] {
    *
    * @author Nick Odumo Feb 2019
    */
-  def swaggerExplorerLatest: FinchIOEndpoint[Unit]
+  def _swaggerExplorerLatest: FinchIOEndpoint[Unit]
 
 }

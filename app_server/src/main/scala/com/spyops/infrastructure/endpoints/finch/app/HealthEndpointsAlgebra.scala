@@ -21,7 +21,7 @@ trait HealthEndpointsAlgebra {
    *
    * @author Nick Odumo Feb 2019
    */
-  def healthCheckString: FinchIOEndpoint[String]
+  def _healthCheckString: FinchIOEndpoint[String]
 
   /**
    * Health-checker.
@@ -34,6 +34,6 @@ trait HealthEndpointsAlgebra {
    *
    * @author Nick Odumo Feb 2019
    */
-  def healthCheckJson: FinchIOEndpoint[Json]
+  def _healthCheckJson: FinchIOEndpoint[Json]
 
 }

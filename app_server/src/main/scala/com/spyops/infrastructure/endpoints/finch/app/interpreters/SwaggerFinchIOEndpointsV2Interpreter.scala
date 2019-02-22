@@ -27,9 +27,9 @@ import shapeless.{ :+:, CNil }
 final class SwaggerFinchIOEndpointsV2Interpreter(swagger: Swagger) extends SwaggerFinchIOEndpointsAlgebra[Json] {
 
   lazy val routes: FinchIOEndpoint[Json :+: Json :+: Unit :+: CNil] =
-    swaggerAsJSON :+:
-      swaggerExplorerV1 :+:
-      swaggerExplorerLatest
+    _swaggerAsJSON :+:
+      _swaggerExplorerV1 :+:
+      _swaggerExplorerLatest
 
   private val LATEST_API_VERSION: Int = 1
 
@@ -37,15 +37,15 @@ final class SwaggerFinchIOEndpointsV2Interpreter(swagger: Swagger) extends Swagg
 
   private val docsSwagger = "docs" :: "swagger"
 
-  def swaggerAsJSON: FinchIOEndpoint[Json] = get(docsSwagger :: "api" :: apiVersion) { _: Int =>
+  def _swaggerAsJSON: FinchIOEndpoint[Json] = get(docsSwagger :: "api" :: apiVersion) { _: Int =>
     Ok(parse(SwaggerJson.mapper.writeValueAsString(swagger)).getOrElse(Json.Null))
   }
 
-  def swaggerExplorerV1: FinchIOEndpoint[Json] = get(docsSwagger :: "v1") {
+  def _swaggerExplorerV1: FinchIOEndpoint[Json] = get(docsSwagger :: "v1") {
     Ok(parse(SwaggerJson.mapper.writeValueAsString(swagger)).getOrElse(Json.Null))
   }
 
-  def swaggerExplorerLatest: FinchIOEndpoint[Unit] = get(docsSwagger :: "latest") {
+  def _swaggerExplorerLatest: FinchIOEndpoint[Unit] = get(docsSwagger :: "latest") {
     Output.unit(Status.SeeOther).withHeader(header = "Location" -> s"docs/swagger/${LATEST_API_VERSION}")
   }
 

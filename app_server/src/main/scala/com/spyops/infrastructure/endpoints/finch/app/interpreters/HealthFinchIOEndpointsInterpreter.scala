@@ -10,13 +10,13 @@ final class HealthFinchIOEndpointsInterpreter extends HealthEndpointsAlgebra {
 
   private val OK: String = "OK"
 
-  val routes = healthCheckString :+: healthCheckJson
+  val routes = _healthCheckString :+: _healthCheckJson
 
-  def healthCheckString: FinchIOEndpoint[String] = get("health") {
+  def _healthCheckString: FinchIOEndpoint[String] = get("health") {
     Ok(OK)
   }
 
-  def healthCheckJson: FinchIOEndpoint[Json] = get("health.json") {
+  def _healthCheckJson: FinchIOEndpoint[Json] = get("health.json") {
     Ok(Json.obj("status" -> Json.fromString(OK)))
   }
 
