@@ -33,9 +33,8 @@ final class MessageGeneralApplicationControllerInterpreter[IOEffect[_]: Monad](
   senderIdFactory: SenderIdFactoryInterpreter,
   recipientIdFactoryInterpreter: RecipientIdFactoryInterpreter,
   messageFactory: MessageFactorySendMessageFormInterpreter,
-  messageRepository: MessageRepositoryAlgebra[IOEffect, List, MessageId, Message, SenderId, RecipientId]) extends MessageGeneralApplicationControllerAlgebra[IOEffect] {
+  messageRepository: MessageRepositoryAlgebra[IOEffect, List, MessageId, Message, SenderId, RecipientId]) extends MessageGeneralApplicationControllerAlgebra[IOEffect, CreateMessageCommand, MessageId.Repr, MessageDTO] {
 
-  // Derive ad-hoc methods for our Async abstraction
   private val monad = implicitly[Monad[IOEffect]]
 
   private def messageToMessageDTO(from: Message): MessageDTO =
@@ -55,7 +54,6 @@ final class MessageGeneralApplicationControllerInterpreter[IOEffect[_]: Monad](
     messageIdFactory.create(messageIdRepr)
       .fold(_ => monad.pure(None), { messageId => monad.map(messageRepository.readByMessageId(messageId))(_.map(messageToMessageDTO)) })
 
-  // Should really be implemented as an Either[Error, List[ListMessage]]
   def viewMessagesSentBetweenUsers(eitherSenderOrRecipientId: (SenderId.Repr, RecipientId.Repr)): IOEffect[List[MessageDTO]] =
     (
       senderIdFactory.create(eitherSenderOrRecipientId._1),

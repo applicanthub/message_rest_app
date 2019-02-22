@@ -1,8 +1,7 @@
 package com.spyops.infrastructure.endpoints.common.responses
 
-import com.spyops.business.application.users.models.dtos.UserCredentials
-import io.circe.{ Decoder, Encoder }
-import io.circe.generic.semiauto.{ deriveDecoder, deriveEncoder }
+// import io.circe.{ Decoder, Encoder }
+// import io.circe.generic.semiauto.{ deriveDecoder, deriveEncoder }
 
 /**
  * JSON Response V1   .
@@ -10,12 +9,12 @@ import io.circe.generic.semiauto.{ deriveDecoder, deriveEncoder }
  * @author Nick Odumo Feb 2019
  * @param data Application data to hand-over
  */
-final case class JSONResponseV1[A](data: A)
+final case class JSONResponseV1(data: AnyRef)
 
 object JSONResponseV1 {
 
-  implicit val decoder: Decoder[UserCredentials] = deriveDecoder[UserCredentials]
+  // implicit def decoder: Decoder[JSONResponseV1] = deriveDecoder[JSONResponseV1]
 
-  implicit val encoder: Encoder[UserCredentials] = deriveEncoder[UserCredentials]
+  // implicit def encoder: Encoder[JSONResponseV1] = deriveEncoder[JSONResponseV1]
 
 }

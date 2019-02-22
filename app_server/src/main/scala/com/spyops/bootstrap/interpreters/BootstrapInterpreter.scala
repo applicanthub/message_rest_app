@@ -2,7 +2,6 @@ package com.spyops.bootstrap.interpreters
 
 import doobie._
 import cats.effect.IO
-
 import scala.concurrent.ExecutionContext
 import io.finch.circe._
 import com.twitter.finagle.Http
@@ -54,8 +53,6 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   // Domain services: Message
   //================================================================================
 
-  // ==== Domain services: Message
-
   private val messageIdFactoryInterpreter: MessageIdFactoryInterpreter = MessageIdFactoryInterpreter.apply
   private val senderIdFactoryInterpreter: SenderIdFactoryInterpreter = SenderIdFactoryInterpreter.apply
   private val recipientIdFactoryInterpreter: RecipientIdFactoryInterpreter = RecipientIdFactoryInterpreter.apply
@@ -73,15 +70,11 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   // Domain services: Users
   //================================================================================
 
-  // ==== Domain services: Users
-
   private implicit val usernameFactoryInterpreter: UsernameFactoryInterpreter = UsernameFactoryInterpreter.apply
 
   //================================================================================
   // Domain services: Repositories
   //================================================================================
-
-  // ==== Repositories: All
 
   private implicit val messageDoobieRepository = MessageDoobieRepositoryInterpreter.apply(doobieTranscation)
   private implicit val userDoobieRepository = UserRepositoryDoobieFInterpreter.apply(doobieTranscation)
@@ -89,7 +82,6 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   //================================================================================
   // Application: Messages
   //================================================================================
-  // ==== Application: Messages
 
   private val createUserToken = CreateUserTokenHS256Interpreter.apply("ExC>&QpG8_Bcnp6Tvz(/XR3/rES;wj(R7Ytv(f-")
   private val messageGeneralApplicationInterpreter =
@@ -103,8 +95,6 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   //================================================================================
   // Application: Users
   //================================================================================
-
-  // ==== Application: Users
 
   private val usersGeneralApplicationInterpreter =
     UsersGeneralApplicationInterpreter(
@@ -122,19 +112,23 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   // Route: Root
   //================================================================================
 
-  // ==== Endpoints: Docs
   private val serviceSwaggerModule = ServiceSwaggerModule(ServiceSwaggerConfig.default())
   private val swaggerFinchRoutes = new SwaggerFinchIOEndpointsV2Interpreter(serviceSwaggerModule.swagger)
 
-  // ==== Routes as list
   private val routeCoproduct = // @todo Refactor to infrastructure and then
     applicationFinchRoutes :+:
       messageFinchRoutes :+:
       usersFinchRoutes :+: swaggerFinchRoutes.routes
 
-  /// ==== Routes as service
+  //================================================================================
+  // Route: Services
+  //================================================================================
 
   private val applicationService = finch.corsFilter.andThen(routeCoproduct.toServiceAs[Application.Json])
+
+  //================================================================================
+  // Route: Application entry
+  //================================================================================
 
   /**
    * Application runner.
@@ -142,7 +136,8 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
    * @author Nick Odumo Feb 2019
    * @param mainMethodArgs Main method arguments
    */
-  def runApplication(mainMethodArgs: Array[String]): Unit = {
+  def runApplication(args: List[String]): Unit = {
+    println(args)
     val _ = Await.ready(Http.serve(addr = ":" ++ applicationConfig.serverPortNumber.toString, applicationService), Duration.Top)
   }
 

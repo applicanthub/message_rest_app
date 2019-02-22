@@ -9,10 +9,12 @@ import com.spyops.scaffolding.ddd.models.{ EntityDDD, IdentifierDDD }
  */
 trait RepositoryCRUDAlgebra[F[_], IRepr, CreateCommand, I <: IdentifierDDD[_], E <: EntityDDD[I]] extends RepositoryAlgebra[F] {
 
-  def read(identifierRepr: IRepr): F[Option[E]]
-
   def create(createCommand: CreateCommand): F[E]
 
+  def read(identifierRepr: IRepr): F[Option[E]]
+
   def update(identifierRepr: IRepr): F[E]
+
+  def delete(identifierRepr: IRepr): F[E]
 
 }

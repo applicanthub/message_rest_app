@@ -26,7 +26,7 @@ abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(
    * @param relativePath Relative route path
    * @param httpMethod HTTP method
    * @param doc Application documentation
-   * @param endpoint Endpoint
+   * @param e Endpoint
    */
   def getSwagger[A](
     relativePath: String,
@@ -43,7 +43,7 @@ abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(
    * @param relativePath Relative route path
    * @param httpMethod HTTP method
    * @param doc Application documentation
-   * @param endpoint Endpoint
+   * @param e Endpoint
    */
   def postSwagger[A](
     relativePath: String,
@@ -60,7 +60,7 @@ abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(
    * @param relativePath Relative route path
    * @param httpMethod HTTP method
    * @param doc Application documentation
-   * @param endpoint Endpoint
+   * @param e Endpoint
    */
   def putSwagger[A](
     relativePath: String,
@@ -77,13 +77,13 @@ abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(
    * @param relativePath Relative route path
    * @param httpMethod HTTP method
    * @param doc Application documentation
-   * @param endpoint Endpoint
+   * @param e Endpoint
    */
   def deleteSwagger[A](
     relativePath: String,
-    httpMethod: Method)(doc: Operation => Operation)(endpoint: Endpoint[F, A]): Eval[Endpoint.Mappable[F, A]] = Eval.later {
+    httpMethod: Method)(doc: Operation => Operation)(e: Endpoint[F, A]): Eval[Endpoint.Mappable[F, A]] = Eval.later {
     defineRouteSwagger(relativePath, httpMethod)(doc)
-    delete(endpoint)
+    delete(e)
   }
 
   /**
