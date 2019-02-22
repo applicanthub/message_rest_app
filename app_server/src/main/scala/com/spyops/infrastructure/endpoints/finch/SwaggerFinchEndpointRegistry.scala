@@ -1,10 +1,12 @@
 package com.spyops.infrastructure.endpoints.finch
 
+import cats.Eval
 import com.jakehschwartz.finatra.swagger.{ FinatraSwagger, SwaggerController }
 import com.spyops.configs.ServiceSwaggerConfig
 import io.swagger.models.{ Operation, Swagger }
 import io.finch.{ EndpointModule, Endpoint }
 import com.twitter.finagle.http.Method
+
 /**
  * Swagger Finch endpoint registry.
  *
@@ -27,7 +29,7 @@ abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(
    */
   def getSwagger[A](
     relativePath: String,
-    httpMethod: Method)(doc: Operation => Operation)(e: Endpoint[F, A]): Endpoint.Mappable[F, A] = {
+    httpMethod: Method)(doc: Operation => Operation)(e: Endpoint[F, A]): Eval[Endpoint.Mappable[F, A]] = Eval.later {
     defineRouteSwagger(relativePath, httpMethod)(doc)
     get(e)
   }
@@ -44,7 +46,7 @@ abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(
    */
   def postSwagger[A](
     relativePath: String,
-    httpMethod: Method)(doc: Operation => Operation)(e: Endpoint[F, A]): Endpoint.Mappable[F, A] = {
+    httpMethod: Method)(doc: Operation => Operation)(e: Endpoint[F, A]): Eval[Endpoint.Mappable[F, A]] = Eval.later {
     defineRouteSwagger(relativePath, httpMethod)(doc)
     post(e)
   }
@@ -61,7 +63,7 @@ abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(
    */
   def putSwagger[A](
     relativePath: String,
-    httpMethod: Method)(doc: Operation => Operation)(e: Endpoint[F, A]): Endpoint.Mappable[F, A] = {
+    httpMethod: Method)(doc: Operation => Operation)(e: Endpoint[F, A]): Eval[Endpoint.Mappable[F, A]] = Eval.later {
     defineRouteSwagger(relativePath, httpMethod)(doc)
     put(e)
   }
@@ -78,7 +80,7 @@ abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(
    */
   def deleteSwagger[A](
     relativePath: String,
-    httpMethod: Method)(doc: Operation => Operation)(endpoint: Endpoint[F, A]): Endpoint.Mappable[F, A] = {
+    httpMethod: Method)(doc: Operation => Operation)(endpoint: Endpoint[F, A]): Eval[Endpoint.Mappable[F, A]] = Eval.later {
     defineRouteSwagger(relativePath, httpMethod)(doc)
     delete(endpoint)
   }
@@ -91,7 +93,7 @@ abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(
    * @param httpMethod HTTP method
    * @param doc Application documentation
    */
-  def defineRouteSwagger(
+  private def defineRouteSwagger(
     relativePath: String,
     httpMethod: Method)(doc: Operation => Operation): Unit =
     registerOperation(relativePath, httpMethod)(doc)
