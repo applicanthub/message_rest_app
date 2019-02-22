@@ -13,7 +13,8 @@ import com.twitter.finagle.http.Method
  * @author Nick Odumo Feb 2019
  * @todo Possibly implement some sort of route accumulation object.
  *       This kind of object would greatly assist in revealing which endpoint have been registered.
- * @param swagger Swagger reference0
+ * @tparam F effect controller
+ * @param swagger Swagger reference
  */
 abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(val swagger: Swagger) extends SwaggerController with EndpointModule[F] {
 
