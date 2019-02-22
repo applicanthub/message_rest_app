@@ -14,17 +14,17 @@ import doobie.util.transactor.Transactor
  * @tparam F Effect
  * @param xa Transactor
  */
-final class UserRepositoryDoobieFInterpreter[F[_]: Monad](val xa: Transactor[F])
+final class UserRepositoryDoobieFInterpreter[F[_]: Monad](val transactor: Transactor[F])
   extends UserRepositoryAlgebra[F, UserId, Username, User] with UserQueryInterpreter {
 
-  def getUserById(userId: UserId): F[Option[User]] = selectByUserId(userId.value).option.transact(xa)
+  def getUserById(userId: UserId): F[Option[User]] = selectByUserId(userId.value).option.transact(transactor)
 
-  def getUserByUsername(username: Username): F[Option[User]] = selectByUserName(username.value).option.transact(xa)
+  def getUserByUsername(username: Username): F[Option[User]] = selectByUserName(username.value).option.transact(transactor)
 
 }
 
 object UserRepositoryDoobieFInterpreter {
 
-  def apply[F[_]](xa: Transactor[F])(implicit monad: Monad[F]) = new UserRepositoryDoobieFInterpreter(xa)
+  def apply[F[_]](transactor: Transactor[F])(implicit monad: Monad[F]) = new UserRepositoryDoobieFInterpreter(transactor)
 
 }
