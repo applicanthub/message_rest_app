@@ -122,6 +122,8 @@ dependencyOverrides ++= Set(
   "org.apache.httpcomponents" % "httpclient" % "4.4.1",
   "org.apache.httpcomponents" % "httpcore" % "4.4.1",
   "org.apache.thrift" % "libthrift" % "0.10.0",
+  "org.atnos" % "eff-cats-effect_2.12" % "5.1.0",
+  "org.atnos" % "eff_2.12" % "5.1.0",
   "org.bouncycastle" % "bcpkix-jdk15on" % "1.60",
   "org.bouncycastle" % "bcprov-jdk15on" % "1.60",
   "org.hdrhistogram" % "HdrHistogram" % "2.1.10",
@@ -153,4 +155,4 @@ dependencyOverrides ++= Set(
   "org.webjars" % "swagger-ui" % "3.13.3",
   "org.yaml" % "snakeyaml" % "1.17"
 )
-// LIBRARY_DEPENDENCIES_HASH ad9d2641819d19a9f2204c8d5c1bfe554a4a7f88
+// LIBRARY_DEPENDENCIES_HASH fd3c9a70a92d28284cc1f1b607f39017556b07e5

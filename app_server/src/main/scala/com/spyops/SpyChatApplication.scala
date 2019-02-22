@@ -15,6 +15,7 @@ object SpyChatApplication extends IOApp {
   def run(args: List[String]): IO[ExitCode] = {
     val applicationConfig = ApplicationConfig.loadConfigIO
 
+    Temp.logIt()
     applicationConfig match {
       case Left(exceptionsLinearCollection) =>
         println("Startup aborted...")

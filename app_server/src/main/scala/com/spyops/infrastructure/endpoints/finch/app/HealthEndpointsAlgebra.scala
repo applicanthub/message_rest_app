@@ -1,14 +1,16 @@
 package com.spyops.infrastructure.endpoints.finch.app
 
 import com.spyops.infrastructure.endpoints.finch.FinchIOEndpoint
-import io.circe.Json
+import shapeless.{ :+:, CNil }
 
 /**
  * Health check API endpoint.
  *
  * @author Nick Odumo Feb 2019
  */
-trait HealthEndpointsAlgebra {
+trait HealthEndpointsAlgebra[Raw, Json] {
+
+  val routes: FinchIOEndpoint[Raw :+: Json :+: CNil]
 
   /**
    * Health-checker.
@@ -21,7 +23,7 @@ trait HealthEndpointsAlgebra {
    *
    * @author Nick Odumo Feb 2019
    */
-  def _healthCheckString: FinchIOEndpoint[String]
+  def _healthCheckString: FinchIOEndpoint[Raw]
 
   /**
    * Health-checker.

@@ -9,7 +9,7 @@ scalacOptions ++= SBTSettings.value
 libraryDependencies ++= {
   val finchVersion = "0.26.0"
   val circeVersion = "0.10.1"
-  val DoobieVersion          = "0.6.0"
+  val DoobieVersion = "0.6.0"
   val scalatestVersion = "3.0.5"
   val finagleVersion = "19.1.0"
   Seq(
@@ -22,7 +22,9 @@ libraryDependencies ++= {
     "io.circe" %% "circe-generic" % circeVersion,
     "io.circe" %% "circe-core" % circeVersion,
     "io.circe" %% "circe-parser" % circeVersion,
-  "org.scalatest" %% "scalatest" % scalatestVersion % "test",
+    "org.atnos" %% "eff" % "5.1.0",
+    "org.atnos" %% "eff-cats-effect" % "5.1.0",
+    "org.scalatest" %% "scalatest" % scalatestVersion % "test",
     "org.tpolecat" %% "doobie-core" % DoobieVersion,
     "org.tpolecat" %% "doobie-h2" % DoobieVersion,
     "org.tpolecat" %% "doobie-scalatest" % DoobieVersion,

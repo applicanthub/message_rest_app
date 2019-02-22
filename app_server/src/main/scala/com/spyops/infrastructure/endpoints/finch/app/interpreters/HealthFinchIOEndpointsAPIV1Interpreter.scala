@@ -6,7 +6,7 @@ import io.circe.Json
 import io.finch._
 import io.finch.catsEffect._
 
-final class HealthFinchIOEndpointsAPIV1Interpreter extends HealthEndpointsAlgebra {
+final class HealthFinchIOEndpointsAPIV1Interpreter extends HealthEndpointsAlgebra[String, Json] {
 
   private val _OK: String = "OK"
 
