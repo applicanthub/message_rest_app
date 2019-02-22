@@ -101,8 +101,10 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
       createUserToken,
       usernameFactoryInterpreter,
       userDoobieRepository)
-
-  // ==== Endpoints
+  
+  //================================================================================
+  //  Endpoints
+  //================================================================================
 
   private val applicationFinchRoutes = HealthFinchIOEndpointsAPIV1Interpreter.apply.routes
   private val messageFinchRoutes = MessageEndpointsInterpreters(messageGeneralApplicationInterpreter).routes
