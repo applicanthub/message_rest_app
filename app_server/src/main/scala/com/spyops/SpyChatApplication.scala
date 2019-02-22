@@ -31,7 +31,6 @@ object SpyChatApplication {
    */
   def main(args: Array[String]): Unit = {
     val applicationConfig = ApplicationConfig.loadConfigIO
-
     applicationConfig match {
       case Left(exceptionsLinearCollection) =>
         println("Startup aborted...")

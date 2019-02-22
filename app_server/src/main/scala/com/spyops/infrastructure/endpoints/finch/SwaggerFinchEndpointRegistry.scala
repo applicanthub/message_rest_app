@@ -3,7 +3,8 @@ package com.spyops.infrastructure.endpoints.finch
 import com.jakehschwartz.finatra.swagger.{ FinatraSwagger, SwaggerController }
 import com.spyops.configs.ServiceSwaggerConfig
 import io.swagger.models.{ Operation, Swagger }
-
+import io.finch.{ EndpointModule, Endpoint }
+import com.twitter.finagle.http.Method
 /**
  * Swagger Finch endpoint registry.
  *
@@ -12,7 +13,75 @@ import io.swagger.models.{ Operation, Swagger }
  *       This kind of object would greatly assist in revealing which endpoint have been registered.
  * @param swagger Swagger reference0
  */
-class SwaggerFinchEndpointRegistry(config: ServiceSwaggerConfig)(implicit val swagger: Swagger) extends SwaggerController {
+abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(val swagger: Swagger) extends SwaggerController with EndpointModule[F] {
+
+  /**
+   * GET swagger.
+   *
+   * @author Nick Odumo Feb 2019
+   * @tparam A Endpoint result
+   * @param relativePath Relative route path
+   * @param httpMethod HTTP method
+   * @param doc Application documentation
+   * @param endpoint Endpoint
+   */
+  def getSwagger[A](
+    relativePath: String,
+    httpMethod: Method)(doc: Operation => Operation)(e: Endpoint[F, A]): Endpoint.Mappable[F, A] = {
+    defineRouteSwagger(relativePath, httpMethod)(doc)
+    get(e)
+  }
+
+  /**
+   * Delete swagger.
+   *
+   * @author Nick Odumo Feb 2019
+   * @tparam A Endpoint result
+   * @param relativePath Relative route path
+   * @param httpMethod HTTP method
+   * @param doc Application documentation
+   * @param endpoint Endpoint
+   */
+  def postSwagger[A](
+    relativePath: String,
+    httpMethod: Method)(doc: Operation => Operation)(e: Endpoint[F, A]): Endpoint.Mappable[F, A] = {
+    defineRouteSwagger(relativePath, httpMethod)(doc)
+    post(e)
+  }
+
+  /**
+   * POST swagger.
+   *
+   * @author Nick Odumo Feb 2019
+   * @tparam A Endpoint result
+   * @param relativePath Relative route path
+   * @param httpMethod HTTP method
+   * @param doc Application documentation
+   * @param endpoint Endpoint
+   */
+  def putSwagger[A](
+    relativePath: String,
+    httpMethod: Method)(doc: Operation => Operation)(e: Endpoint[F, A]): Endpoint.Mappable[F, A] = {
+    defineRouteSwagger(relativePath, httpMethod)(doc)
+    put(e)
+  }
+
+  /**
+   * DELETE swagger.
+   *
+   * @author Nick Odumo Feb 2019
+   * @tparam A Endpoint result
+   * @param relativePath Relative route path
+   * @param httpMethod HTTP method
+   * @param doc Application documentation
+   * @param endpoint Endpoint
+   */
+  def deleteSwagger[A](
+    relativePath: String,
+    httpMethod: Method)(doc: Operation => Operation)(endpoint: Endpoint[F, A]): Endpoint.Mappable[F, A] = {
+    defineRouteSwagger(relativePath, httpMethod)(doc)
+    delete(endpoint)
+  }
 
   /**
    * Define swagger route.
@@ -24,7 +93,7 @@ class SwaggerFinchEndpointRegistry(config: ServiceSwaggerConfig)(implicit val sw
    */
   def defineRouteSwagger(
     relativePath: String,
-    httpMethod: String)(doc: Operation => Operation): Unit =
+    httpMethod: Method)(doc: Operation => Operation): Unit =
     registerOperation(relativePath, httpMethod)(doc)
 
   /**
@@ -35,10 +104,10 @@ class SwaggerFinchEndpointRegistry(config: ServiceSwaggerConfig)(implicit val sw
    * @param httpMethod HTTP method
    * @param doc Application documentation
    */
-  private def registerOperation(relativePath: String, httpMethod: String)(doc: Operation => Operation): Unit = {
+  private def registerOperation(relativePath: String, httpMethod: Method)(doc: Operation => Operation): Unit = {
     val _ = FinatraSwagger
       .convert(swagger)
-      .registerOperation(absoluteRoute(relativePath), httpMethod, doc(new Operation))
+      .registerOperation(absoluteRoute(relativePath), httpMethod.name, doc(new Operation))
   }
 
   /**
@@ -48,12 +117,5 @@ class SwaggerFinchEndpointRegistry(config: ServiceSwaggerConfig)(implicit val sw
    * @param relativePath Path
    */
   private def absoluteRoute(relativePath: String): String = config.baseApplicationLocation ++ relativePath
-
-}
-
-object SwaggerFinchEndpointRegistry {
-
-  def apply(config: ServiceSwaggerConfig)(implicit swagger: Swagger): SwaggerFinchEndpointRegistry =
-    new SwaggerFinchEndpointRegistry(config)(swagger)
 
 }
