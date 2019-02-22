@@ -24,14 +24,14 @@ import shapeless.{ :+:, CNil }
  * @author Nick Odumo Feb 2019
  * @param swagger Swagger defined spec.
  */
-final class SwaggerFinchIOEndpointsV2Interpreter(val swagger: Swagger) extends SwaggerFinchIOEndpointsAlgebra[Json] {
+final class SwaggerFinchIOEndpointsSwaggerV2Interpreter(val swagger: Swagger) extends SwaggerFinchIOEndpointsAlgebra[Json] {
 
   lazy val routes: FinchIOEndpoint[Json :+: Json :+: Unit :+: CNil] =
     _swaggerAsJSON :+:
       _swaggerExplorerV1 :+:
       _swaggerExplorerLatest
 
-  private val LATEST_API_VERSION: Int = 1
+  private val _LATEST_API_VERSION: Int = 1
 
   private val _apiVersion = param[Int](name = "version")
 
@@ -46,14 +46,14 @@ final class SwaggerFinchIOEndpointsV2Interpreter(val swagger: Swagger) extends S
   }
 
   def _swaggerExplorerLatest: FinchIOEndpoint[Unit] = get(_docsSwagger :: "latest") {
-    Output.unit(Status.SeeOther).withHeader(header = "Location" -> s"docs/swagger/${LATEST_API_VERSION}")
+    Output.unit(Status.SeeOther).withHeader(header = "Location" -> s"docs/swagger/${_LATEST_API_VERSION}")
   }
 
 }
 
-object SwaggerFinchIOEndpointsV2Interpreter {
+object SwaggerFinchIOEndpointsSwaggerV2Interpreter {
 
-  def apply(swagger: Swagger): SwaggerFinchIOEndpointsV2Interpreter =
-    new SwaggerFinchIOEndpointsV2Interpreter(swagger)
+  def apply(swagger: Swagger): SwaggerFinchIOEndpointsSwaggerV2Interpreter =
+    new SwaggerFinchIOEndpointsSwaggerV2Interpreter(swagger)
 
 }

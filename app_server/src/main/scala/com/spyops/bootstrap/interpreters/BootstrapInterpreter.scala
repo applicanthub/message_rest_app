@@ -12,7 +12,7 @@ import com.spyops.business.application.users.services.interpreters.{ CreateUserT
 import com.spyops.business.domain.messages.services.interpreters._
 import com.spyops.configs.{ ApplicationConfig, ServiceSwaggerConfig }
 import com.spyops.business.domain.users.services.interpreters.UsernameFactoryInterpreter
-import com.spyops.infrastructure.endpoints.finch.app.interpreters.{ HealthFinchIOEndpointsInterpreter, SwaggerFinchIOEndpointsV2Interpreter }
+import com.spyops.infrastructure.endpoints.finch.app.interpreters.{ HealthFinchIOEndpointsInterpreter, SwaggerFinchIOEndpointsSwaggerV2Interpreter }
 import com.spyops.infrastructure.endpoints.finch.users.interpreters.UsersFinchIOEndpointsV1Interpreter
 import com.spyops.infrastructure.repositories.doobie.users.interpreters.UserRepositoryDoobieFInterpreter
 import com.spyops.infrastructure.endpoints.finch
@@ -113,7 +113,7 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   //================================================================================
 
   private val serviceSwaggerModule = ServiceSwaggerModule(ServiceSwaggerConfig.default())
-  private val swaggerFinchRoutes = new SwaggerFinchIOEndpointsV2Interpreter(serviceSwaggerModule.swagger)
+  private val swaggerFinchRoutes = new SwaggerFinchIOEndpointsSwaggerV2Interpreter(serviceSwaggerModule.swagger)
 
   private val routeCoproduct = // @todo Refactor to infrastructure and then
     applicationFinchRoutes :+:
