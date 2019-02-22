@@ -68,12 +68,12 @@ final class MessageGeneralApplicationControllerInterpreter[IOEffect[_]: Monad](
 
 object MessageGeneralApplicationControllerInterpreter {
 
-  def apply[F[_]: Monad](
+  def apply[IOEffect[_]: Monad](
     messageIdFactoryInterpreter: MessageIdFactoryInterpreter,
     senderIdFactoryInterpreter: SenderIdFactoryInterpreter,
     recipientIdFactoryInterpreter: RecipientIdFactoryInterpreter,
     messageFactoryInterpreter: MessageFactorySendMessageFormInterpreter,
-    messageRepositoryAlgebra: MessageRepositoryAlgebra[F, List, MessageId, Message, SenderId, RecipientId]) =
+    messageRepositoryAlgebra: MessageRepositoryAlgebra[IOEffect, List, MessageId, Message, SenderId, RecipientId]) =
     new MessageGeneralApplicationControllerInterpreter(
       messageIdFactoryInterpreter,
       senderIdFactoryInterpreter,
