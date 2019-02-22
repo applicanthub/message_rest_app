@@ -8,16 +8,16 @@ import io.finch.catsEffect._
 
 final class HealthFinchIOEndpointsInterpreter extends HealthEndpointsAlgebra {
 
-  private val OK: String = "OK"
+  private val _OK: String = "OK"
 
   val routes = _healthCheckString :+: _healthCheckJson
 
   def _healthCheckString: FinchIOEndpoint[String] = get("health") {
-    Ok(OK)
+    Ok(_OK)
   }
 
   def _healthCheckJson: FinchIOEndpoint[Json] = get("health.json") {
-    Ok(Json.obj("status" -> Json.fromString(OK)))
+    Ok(Json.obj("status" -> Json.fromString(_OK)))
   }
 
 }
