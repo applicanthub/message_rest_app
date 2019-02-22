@@ -8,23 +8,24 @@ import com.spyops.business.domain.users.repositories.UserRepositoryAlgebra
 import doobie.util.transactor.Transactor
 
 /**
- * User repository over F.
+ * User repository over IOEffect.
  *
  * @author Nick Odumo Feb 2019
- * @tparam F Effect
- * @param xa Transactor
+ * @tparam IOEffect Effect
+ * @param transactor Transactor
  */
-final class UserRepositoryDoobieFInterpreter[F[_]: Monad](val transactor: Transactor[F])
-  extends UserRepositoryAlgebra[F, UserId, Username, User] with UserQueryInterpreter {
+final class UserRepositoryDoobieFInterpreter[IOEffect[_]: Monad](val transactor: Transactor[IOEffect])
+  extends UserRepositoryAlgebra[IOEffect, UserId, Username, User] with UserQueryInterpreter {
 
-  def getUserById(userId: UserId): F[Option[User]] = selectByUserId(userId.value).option.transact(transactor)
+  def getUserById(userId: UserId): IOEffect[Option[User]] = selectByUserId(userId.value).option.transact(transactor)
 
-  def getUserByUsername(username: Username): F[Option[User]] = selectByUserName(username.value).option.transact(transactor)
+  def getUserByUsername(username: Username): IOEffect[Option[User]] = selectByUserName(username.value).option.transact(transactor)
 
 }
 
 object UserRepositoryDoobieFInterpreter {
 
-  def apply[F[_]](transactor: Transactor[F])(implicit monad: Monad[F]) = new UserRepositoryDoobieFInterpreter(transactor)
+  def apply[IOEffect[_]](transactor: Transactor[IOEffect])(implicit monad: Monad[IOEffect]) = 
+    new UserRepositoryDoobieFInterpreter(transactor)
 
 }
