@@ -1,4 +1,4 @@
-package com.spyops.infrastructure.auth
+package com.spyops.infrastructure.utils
 
 import java.util.UUID.randomUUID
 
