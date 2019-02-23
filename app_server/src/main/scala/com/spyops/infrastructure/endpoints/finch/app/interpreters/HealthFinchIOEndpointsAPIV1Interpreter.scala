@@ -10,14 +10,14 @@ final class HealthFinchIOEndpointsAPIV1Interpreter extends HealthEndpointsAlgebr
 
   private val _OK: String = "OK"
 
-  lazy val routes = _healthCheckString :+: _healthCheckJson
+  lazy val routes = _healthCheckEndpoint :+: _healthCheckJsonEndpoint
 
-  def _healthCheckString: FinchIOEndpoint[String] = get("health") {
+  def _healthCheckEndpoint: FinchIOEndpoint[String] = get("health") {
     Ok(_OK)
   }
 
   // HTTP code: 200 - { status: "OK" } : { status: String }
-  def _healthCheckJson: FinchIOEndpoint[Json] = get("health.json") {
+  def _healthCheckJsonEndpoint: FinchIOEndpoint[Json] = get("health.json") {
     Ok(Json.obj("status" -> Json.fromString(_OK)))
   }
 
