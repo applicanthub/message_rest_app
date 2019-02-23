@@ -32,8 +32,8 @@ object Temp {
 
   // run the action with all the interpreters
   // each interpreter running one effect
-  def testIt = program[Stack].runReader(6).runWriter.runEval.run
+  def testIt(int: Int) = program[Stack].runReader(int).runWriter.runEval.run
 
-  def logIt(): Unit = println(testIt)
+  def logIt(): Unit = println(testIt(100))
 
 }
