@@ -16,6 +16,7 @@ final class HealthFinchIOEndpointsAPIV1Interpreter extends HealthEndpointsAlgebr
     Ok(_OK)
   }
 
+  // HTTP code: 200 - { status: "OK" } : { status: String }
   def _healthCheckJson: FinchIOEndpoint[Json] = get("health.json") {
     Ok(Json.obj("status" -> Json.fromString(_OK)))
   }
