@@ -101,7 +101,7 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
       createUserToken,
       usernameFactoryInterpreter,
       userDoobieRepository)
-  
+
   //================================================================================
   //  Endpoints
   //================================================================================

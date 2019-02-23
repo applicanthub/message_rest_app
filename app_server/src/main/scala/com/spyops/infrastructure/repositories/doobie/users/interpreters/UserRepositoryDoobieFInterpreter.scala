@@ -25,7 +25,7 @@ final class UserRepositoryDoobieFInterpreter[IOEffect[_]: Monad](val transactor:
 
 object UserRepositoryDoobieFInterpreter {
 
-  def apply[IOEffect[_]](transactor: Transactor[IOEffect])(implicit monad: Monad[IOEffect]) = 
+  def apply[IOEffect[_]](transactor: Transactor[IOEffect])(implicit monad: Monad[IOEffect]) =
     new UserRepositoryDoobieFInterpreter(transactor)
 
 }
