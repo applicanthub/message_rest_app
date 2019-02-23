@@ -1,7 +1,7 @@
 package com.spyops.business.application.messages.models.commands
 
 import com.spyops.business.domain.messages.models.values.{ Body, RecipientId, SenderId }
-import com.spyops.scaffolding.application.models.events.CommandEvent
+import com.spyops.scaffolding.business.application.models.events.CommandEvent
 import io.circe.{ Decoder, Encoder }
 import io.circe.generic.semiauto.{ deriveDecoder, deriveEncoder }
 

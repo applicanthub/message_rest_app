@@ -1,6 +1,6 @@
 package com.spyops.business.domain.users.repositories
 
-import com.spyops.scaffolding.ddd.repositories.RepositoryUbiquitousAlgebra
+import com.spyops.scaffolding.business.ddd.repositories.RepositoryUbiquitousAlgebra
 
 trait UserRepositoryAlgebra[F[_], UserId, Username, User] extends RepositoryUbiquitousAlgebra[F] {
 

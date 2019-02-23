@@ -2,7 +2,7 @@ package com.spyops.business.domain.users.models.values
 
 import cats.Show
 import com.spyops.business.domain.users.models.values.Username.Repr
-import com.spyops.scaffolding.ddd.models.ValueDDD
+import com.spyops.scaffolding.business.ddd.models.ValueDDD
 
 final case class Username(value: Repr) extends ValueDDD
 

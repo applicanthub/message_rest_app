@@ -3,7 +3,7 @@ package com.spyops.business.domain.users.models.values
 import cats.Show
 import cats.kernel.Eq
 import com.spyops.business.domain.users.models.values.UserPassword.Repr
-import com.spyops.scaffolding.ddd.models.ValueDDD
+import com.spyops.scaffolding.business.ddd.models.ValueDDD
 
 final case class UserPassword(value: Repr) extends ValueDDD
 

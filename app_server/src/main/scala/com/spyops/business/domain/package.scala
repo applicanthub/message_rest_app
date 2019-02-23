@@ -3,8 +3,8 @@ package com.spyops.business
 import java.util.UUID
 
 import cats.data.ValidatedNec
-import com.spyops.scaffolding.application.errors.ModelValidationError
-import com.spyops.scaffolding.ddd.services.FactoryAlgebra
+import com.spyops.scaffolding.business.application.errors.ModelValidationError
+import com.spyops.scaffolding.business.ddd.services.FactoryAlgebra
 
 import scala.util.matching.Regex
 

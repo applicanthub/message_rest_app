@@ -2,7 +2,7 @@ package com.spyops.business.domain.users.models.aggregates
 
 import cats.Show
 import com.spyops.business.domain.users.models.values.{ UserId, UserPassword, Username }
-import com.spyops.scaffolding.ddd.models.EntityDDD
+import com.spyops.scaffolding.business.ddd.models.EntityDDD
 
 /**
  * User aggregate model.

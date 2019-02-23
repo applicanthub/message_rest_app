@@ -4,7 +4,7 @@ import cats.implicits._
 import com.spyops.business.domain.ModelValidation
 import com.spyops.business.domain.users.models.values.Username
 import com.spyops.business.domain.users.services.UserFactoryAlgebra
-import com.spyops.scaffolding.application.errors.ModelValidationError
+import com.spyops.scaffolding.business.application.errors.ModelValidationError
 import com.spyops.utils.regex.syntax._
 
 /**

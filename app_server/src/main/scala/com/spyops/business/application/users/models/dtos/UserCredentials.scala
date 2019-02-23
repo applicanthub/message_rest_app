@@ -1,6 +1,6 @@
 package com.spyops.business.application.users.models.dtos
 
-import com.spyops.scaffolding.application.models.dtos.DTO
+import com.spyops.scaffolding.business.application.models.dtos.DTO
 import io.circe.Decoder
 import io.circe.Encoder
 import io.circe.generic.semiauto._

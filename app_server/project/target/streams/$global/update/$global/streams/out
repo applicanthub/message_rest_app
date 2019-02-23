@@ -6332,7 +6332,7 @@
 [0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-compiler;2.10.6 {scala-tool=[default, optional(default)]} => dependency: org.scala-lang#scala-compiler;2.10.6 {scala-tool=[default, optional(default)]}[0m
 [0m[[0mdebug[0m] [0mdependency descriptor has been mediated: MergedDescriptors(dependency: org.scala-lang#scala-library;2.10.6 {scala-tool=[default, optional(default)]},dependency: org.scala-lang#scala-library;2.10.6 {provided=[default(compile)]}) => dependency: org.scala-lang#scala-library;2.10.6 {scala-tool=[default, optional(default)], provided=[default(compile)]}[0m
 [0m[[0minfo[0m] [0mResolving org.spire-math#kind-projector_2.10;0.9.7 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: MergedDescriptors(dependency: org.spire-math#kind-projector_2.10;0.9.7 {plugin=[default(compile)]},dependency: org.spire-math#kind-projector_2.10;0.9.7 {plugin=[default(compile)]})[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.spire-math#kind-projector_2.10;0.9.7 {plugin=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.spire-math#kind-projector_2.10;0.9.7[0m
 [0m[[0mdebug[0m] [0m	found org.spire-math#kind-projector_2.10;0.9.7 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#app_server-build;0.1-SNAPSHOT->org.spire-math#kind-projector_2.10;0.9.7 [plugin->runtime][0m
@@ -6773,7 +6773,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scalamacros#quasiquotes_2.10;2.1.0!quasiquotes_2.10.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#jline;2.10.6!jline.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 1291ms :: artifacts dl 22ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 1439ms :: artifacts dl 27ms[0m
 [0m[[0mdebug[0m] [0m	report for default#app_server-build;0.1-SNAPSHOT compile produced in /home/nick/Documents/qlik/app_server/project/target/scala-2.10/sbt-0.13/resolution-cache/reports/default-app_server-build-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#app_server-build;0.1-SNAPSHOT runtime produced in /home/nick/Documents/qlik/app_server/project/target/scala-2.10/sbt-0.13/resolution-cache/reports/default-app_server-build-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#app_server-build;0.1-SNAPSHOT test produced in /home/nick/Documents/qlik/app_server/project/target/scala-2.10/sbt-0.13/resolution-cache/reports/default-app_server-build-test.xml[0m
@@ -6787,5 +6787,5 @@
 [0m[[0mdebug[0m] [0m	report for default#app_server-build;0.1-SNAPSHOT docs produced in /home/nick/Documents/qlik/app_server/project/target/scala-2.10/sbt-0.13/resolution-cache/reports/default-app_server-build-docs.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#app_server-build;0.1-SNAPSHOT pom produced in /home/nick/Documents/qlik/app_server/project/target/scala-2.10/sbt-0.13/resolution-cache/reports/default-app_server-build-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#app_server-build;0.1-SNAPSHOT scala-tool produced in /home/nick/Documents/qlik/app_server/project/target/scala-2.10/sbt-0.13/resolution-cache/reports/default-app_server-build-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (1291ms resolve - 22ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (1439ms resolve - 27ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

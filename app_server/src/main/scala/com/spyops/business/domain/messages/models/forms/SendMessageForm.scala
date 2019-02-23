@@ -1,7 +1,7 @@
 package com.spyops.business.domain.messages.models.forms
 
 import com.spyops.business.domain.messages.models.values.{ Body, RecipientId, SenderId }
-import com.spyops.scaffolding.ddd.models.FormDDD
+import com.spyops.scaffolding.business.ddd.models.FormDDD
 
 /**
  * Send message command.

@@ -1,7 +1,7 @@
 package com.spyops.business.domain.billing.models.aggregates
 
 import com.spyops.business.domain.billing.models.values.card.{ CardCVV, CardExpiry, CardId, CardNumber }
-import com.spyops.scaffolding.ddd.models.ValueDDD
+import com.spyops.scaffolding.business.ddd.models.ValueDDD
 
 sealed trait CreditCard extends ValueDDD {
   val aggregateId: CardId

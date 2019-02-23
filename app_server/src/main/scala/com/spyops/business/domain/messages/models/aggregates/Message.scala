@@ -1,7 +1,7 @@
 package com.spyops.business.domain.messages.models.aggregates
 
 import com.spyops.business.domain.messages.models.values._
-import com.spyops.scaffolding.ddd.models.EntityDDD
+import com.spyops.scaffolding.business.ddd.models.EntityDDD
 
 /**
  * Application message.

@@ -1,7 +1,7 @@
 package com.spyops.business.application.messages.models.dtos
 
 import com.spyops.business.domain.messages.models.values._
-import com.spyops.scaffolding.application.models.dtos.DTO
+import com.spyops.scaffolding.business.application.models.dtos.DTO
 import io.circe.{ Decoder, Encoder }
 import io.circe.generic.semiauto.{ deriveDecoder, deriveEncoder }
 
