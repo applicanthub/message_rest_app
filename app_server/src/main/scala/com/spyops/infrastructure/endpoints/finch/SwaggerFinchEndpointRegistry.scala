@@ -16,7 +16,23 @@ import com.twitter.finagle.http.Method
  * @tparam F effect controller
  * @param swagger Swagger reference
  */
-abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(val swagger: Swagger) extends SwaggerController with EndpointModule[F] {
+class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(val swagger: Swagger) extends SwaggerController with EndpointModule[F] {
+
+  def tryIt() = {
+    getSwagger("cooler", Method.Get) { o =>
+      o.summary("Sample request with route")
+        .description("Read the detail information about the student.")
+        .tag("Student")
+
+    }
+
+    getSwagger("demo/newer", Method.Get) { o =>
+      o.summary("Sample request with route")
+        .description("Read the detail information about the student.")
+        .tag("Student")
+
+    }
+  }
 
   /**
    * GET swagger.
@@ -30,9 +46,8 @@ abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(
    */
   def getSwagger[A](
     relativePath: String,
-    httpMethod: Method)(doc: Operation => Operation)(e: Endpoint[F, A]): Eval[Endpoint.Mappable[F, A]] = Eval.later {
+    httpMethod: Method)(doc: Operation => Operation) = {
     defineRouteSwagger(relativePath, httpMethod)(doc)
-    get(e)
   }
 
   /**
@@ -110,7 +125,9 @@ abstract class SwaggerFinchEndpointRegistry[F[_]](config: ServiceSwaggerConfig)(
   private def registerOperation(relativePath: String, httpMethod: Method)(doc: Operation => Operation): Unit = {
     val _ = FinatraSwagger
       .convert(swagger)
-      .registerOperation(absoluteRoute(relativePath), httpMethod.name, doc(new Operation))
+      .registerOperation(absoluteRoute(relativePath), httpMethod.name, doc(new Operation().summary("Sample request with route")
+        .description("Read the detail information about the student.")
+        .tag("Student")))
   }
 
   /**

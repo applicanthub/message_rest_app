@@ -20,7 +20,7 @@ import com.spyops.infrastructure.endpoints.finch.ServiceSwaggerModule
 import io.finch.Application
 import com.spyops.infrastructure.endpoints.finch.messages.interpreters.MessageEndpointsInterpreters
 import com.spyops.infrastructure.repositories.doobie.messages.interpreters.MessageDoobieRepositoryInterpreter
-
+import com.spyops.infrastructure.endpoints.finch.SwaggerFinchEndpointRegistry
 /**
  * Application Bootstrap builder.
  * In functional programming terms this is the "End of the world" where functions are impure.
@@ -115,7 +115,10 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   //================================================================================
 
   private val serviceSwaggerModule = new ServiceSwaggerModule(ServiceSwaggerConfig.default())
-  private val swaggerFinchRoutes = new SwaggerFinchIOEndpointsSwaggerV2Interpreter(serviceSwaggerModule.swagger)
+  private val swagger = serviceSwaggerModule.swagger
+  private val a = new SwaggerFinchEndpointRegistry(ServiceSwaggerConfig.default())(swagger).tryIt()
+  println(a)
+  private val swaggerFinchRoutes = new SwaggerFinchIOEndpointsSwaggerV2Interpreter(swagger)
 
   private val routeCoproduct = // @todo Refactor to infrastructure and then
     applicationFinchRoutes :+:
