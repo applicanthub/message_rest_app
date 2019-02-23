@@ -6,16 +6,16 @@ import io.finch._
 import io.finch.circe._
 import io.finch.catsEffect._
 
-case class UserForm(email: String, screen_name: String)
+case class PaginationParms(pageNumber: String, sampling: String)
 
-object UserForm {
+object PaginationParms {
 
-  val mailRule = ValidationRule[String]("mail should be mailRule")(a => """(\w+)@([\w\.]+)""".r.unapplySeq(a).isDefined)
+  val pageNumber = ValidationRule[String]("mail should be mailRule")(a => """(\w+)@([\w\.]+)""".r.unapplySeq(a).isDefined)
 
-  val userReqParams: Endpoint[IO, UserForm] = (
-    param("email").should(mailRule) ::
-    param("screen_name")).as[UserForm]
+  val userReqParams: Endpoint[IO, PaginationParms] = (
+    param("email").should(pageNumber) ::
+    param("screen_name")).as[PaginationParms]
 
-  val userJson: Endpoint[IO, Seq[UserForm]] = jsonBody[Seq[UserForm]]
+  val userJson: Endpoint[IO, Seq[PaginationParms]] = jsonBody[Seq[PaginationParms]]
 
 }
