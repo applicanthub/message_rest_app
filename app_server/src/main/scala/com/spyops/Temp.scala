@@ -14,9 +14,9 @@ object Temp {
   type _readerInt[R] = ReaderInt |= R
   type _writerString[R] = WriterString |= R
 
-  def program[R: _readerInt: _writerString: _eval]: Eff[R, Int] = for { 
+  def program[R: _readerInt: _writerString: _eval]: Eff[R, Int] = for {
     n <- ask[R, Int]
- 
+
     _ <- tell("the required power is " + n)
 
     a <- delay(math.pow(10, n.toDouble).toInt)

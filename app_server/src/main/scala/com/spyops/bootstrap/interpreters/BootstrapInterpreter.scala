@@ -114,7 +114,7 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   // Route: Root
   //================================================================================
 
-  private val serviceSwaggerModule = ServiceSwaggerModule(ServiceSwaggerConfig.default())
+  private val serviceSwaggerModule = new ServiceSwaggerModule(ServiceSwaggerConfig.default())
   private val swaggerFinchRoutes = new SwaggerFinchIOEndpointsSwaggerV2Interpreter(serviceSwaggerModule.swagger)
 
   private val routeCoproduct = // @todo Refactor to infrastructure and then

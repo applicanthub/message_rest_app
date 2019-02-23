@@ -11,29 +11,30 @@ import io.swagger.models.auth.BasicAuthDefinition
  * @author Nick Odumo Feb 2019
  * @param config Swagger configuration
  */
-class ServiceSwaggerModule(config: ServiceSwaggerConfig) extends SwaggerModule {
+class ServiceSwaggerModule(val config: ServiceSwaggerConfig) extends SwaggerModule {
 
-  private val swaggerUI = new Swagger()
+  private val _contactInfo = new Contact()
+    .name(config.name)
+    .email(config.email)
+
+  private lazy val info = new Info()
+    .contact(_contactInfo)
+    .title(config.title)
+    .description(config.description)
+    .version(config.version)
+    .license(config.license)
+
+  private lazy val _swaggerUI = new Swagger()
 
   def swagger: Swagger = {
-    val info = new Info()
-      .contact(new Contact()
-        .name(config.name)
-        .email(config.email))
-      .title(config.title)
-      .description(config.description)
-      .version(config.version)
-      .license(config.license)
-
-    swaggerUI
+    _swaggerUI
       .info(info)
       .addSecurityDefinition("BasicAuth", {
         val basicAuthDefinition = new BasicAuthDefinition()
         basicAuthDefinition.setType("basic")
         basicAuthDefinition
       })
-
-    swaggerUI
+    _swaggerUI
   }
 }
 
