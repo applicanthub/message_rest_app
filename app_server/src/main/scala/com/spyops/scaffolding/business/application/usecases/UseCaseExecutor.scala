@@ -19,7 +19,7 @@ abstract class UseCaseExecutor[F[_], Input, Output, WriterValue] {
    * @author Nick Odumo Feb 2019
    * @param value Loggable value
    */
-  def logWriterResult(value: String)(implicit show: Show[WriterValue]): F[Unit]
+  def logWriterResult(writerValue: WriterValue)(implicit show: Show[WriterValue]): F[Unit]
 
   /**
    * Executes the business logic of your application's use case.
