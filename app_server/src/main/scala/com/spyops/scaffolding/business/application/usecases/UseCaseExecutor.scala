@@ -1,5 +1,6 @@
 package com.spyops.scaffolding.business.application.usecases
 
+import cats.Monad
 import cats.Show
 
 /**
@@ -11,7 +12,7 @@ import cats.Show
  * @tparam Input Input value
  * @tparam Output Output value
  */
-abstract class UseCaseExecutor[F[_], Input, Output, WriterValue] {
+abstract class UseCaseExecutor[F[_]: Monad, Input, Output, WriterValue] {
 
   /**
    * Log the business logic result.
