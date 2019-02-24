@@ -11,6 +11,7 @@ import cats.Show
  * @tparam F Effect
  * @tparam Input Input value
  * @tparam Output Output value
+ * @tparam WriterValue Writer value
  */
 abstract class UseCaseExecutor[F[_]: Monad, Input, Output, WriterValue] {
 
