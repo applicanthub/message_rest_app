@@ -30,10 +30,7 @@ abstract class UseCaseExecutor[F[_]: Monad, Input, Output, WriterValue] {
    * @param request An object containing request data in public fields
    * @return object An object containing response data in public fields
    */
-  def useCaseExecutor(useCase: Nothing, request: Input): F[(Output, WriterValue)]
-  
-  
-  def executeUseCase: F[Output]
-
+  def executeExecutor(useCase: Nothing, request: Input): F[(Output, WriterValue)]
+   
 }
 
