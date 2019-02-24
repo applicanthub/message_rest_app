@@ -11,7 +11,7 @@ import cats.Show
  * @tparam Input Input value
  * @tparam Output Output value
  */
-abstract class UseCaseExecutor[F[_], Input, Output] {
+abstract class UseCaseExecutor[F[_], Input, Output, WriterValue] {
 
   /**
    * Log the business logic result.
