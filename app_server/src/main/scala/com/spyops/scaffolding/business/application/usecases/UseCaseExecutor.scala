@@ -1,7 +1,5 @@
 package com.spyops.scaffolding.business.application.usecases
 
-
-
 /**
  * Log the business logic result.
  *
