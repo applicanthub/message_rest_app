@@ -1,5 +1,16 @@
 package com.spyops.scaffolding.business.application.usecases
 
+
+
+/**
+ * Log the business logic result.
+ *
+ * @author Nick Odumo Feb 2019
+ * @todo Implement context object
+ * @tparam F Effect
+ * @tparam Input Input value
+ * @tparam Output Output value 
+ */
 abstract class UseCaseExecutor[F[_], Input, Output] {
 
   /**
@@ -22,6 +33,4 @@ abstract class UseCaseExecutor[F[_], Input, Output] {
 
 }
 
-object UseCaseExecutor {
-
-}
+ 
