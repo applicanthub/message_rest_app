@@ -1,5 +1,7 @@
 package com.spyops.scaffolding.business.application.usecases
 
+import cats.Show
+
 abstract class UseCaseExecutor[F[_], Input, Output] {
 
   /**
@@ -8,7 +10,7 @@ abstract class UseCaseExecutor[F[_], Input, Output] {
    * @author Nick Odumo Feb 2019
    * @param value Loggable value
    */
-  def logWriterResult(value: String): F[Unit]
+  def logWriterResult(value: String)(s: Show[String]): F[Unit]
 
   /**
    * Executes the business logic of your application's use case.
