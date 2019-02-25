@@ -32,6 +32,6 @@ abstract class UseCaseExecutor[F[_]: Monad, Input, Output, WriterValue] {
    * @return object An object containing response data in public fields
    */
   def executeExecutor(useCase: Nothing, request: Input): F[(Output, WriterValue)]
-   
+
 }
 
