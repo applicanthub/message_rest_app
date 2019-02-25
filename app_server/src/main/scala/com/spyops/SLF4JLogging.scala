@@ -6,6 +6,7 @@ import java.util.logging.LogManager
 import org.slf4j.bridge.SLF4JBridgeHandler
 
 trait SLF4JLogging { self: App =>
+  
   init {
     // Turn off Java util logging so that slf4j can configure it
     LogManager.getLogManager.getLogger("").getHandlers.toList.foreach { l =>
@@ -17,4 +18,5 @@ trait SLF4JLogging { self: App =>
   onExit {
     SLF4JBridgeHandler.uninstall()
   }
+  
 }
