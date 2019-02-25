@@ -47,12 +47,12 @@ final class MessageGeneralApplicationControllerInterpreter[IOEffect[_]: Monad](
         createMessageCommand.recipientId,
         createMessageCommand.body)).toEither match {
         case Right(message) => monadIOEffect.map(messageRepository.createMessage(message))(_ => Some(messageToMessageDTO(message)))
-        case _ => monad.pure(None)
+        case _ => monadIOEffect.pure(None)
       }
 
   def viewMessageById(messageIdRepr: MessageId.Repr): IOEffect[Option[MessageDTO]] =
     messageIdFactory.create(messageIdRepr)
-      .fold(_ => monad.pure(None), { messageId => monadIOEffect.map(messageRepository.readByMessageId(messageId))(_.map(messageToMessageDTO)) })
+      .fold(_ => monadIOEffect.pure(None), { messageId => monadIOEffect.map(messageRepository.readByMessageId(messageId))(_.map(messageToMessageDTO)) })
 
   def viewMessagesSentBetweenUsers(eitherSenderOrRecipientId: (SenderId.Repr, RecipientId.Repr)): IOEffect[List[MessageDTO]] =
     (
