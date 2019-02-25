@@ -1,5 +1,6 @@
 package com.spyops.scaffolding.business.application.usecases
 
+import cats.Monad
 import cats.Show
 
 /**
@@ -10,8 +11,9 @@ import cats.Show
  * @tparam F Effect
  * @tparam Input Input value
  * @tparam Output Output value
+ * @tparam WriterValue Writer value
  */
-abstract class UseCaseExecutor[F[_], Input, Output] {
+abstract class UseCaseExecutor[F[_]: Monad, Input, Output, WriterValue] {
 
   /**
    * Log the business logic result.
@@ -19,7 +21,7 @@ abstract class UseCaseExecutor[F[_], Input, Output] {
    * @author Nick Odumo Feb 2019
    * @param value Loggable value
    */
-  def logWriterResult(value: String)(s: Show[String]): F[Unit]
+  def logWriterResult(writerValue: WriterValue)(implicit show: Show[WriterValue]): F[Unit]
 
   /**
    * Executes the business logic of your application's use case.
@@ -29,7 +31,7 @@ abstract class UseCaseExecutor[F[_], Input, Output] {
    * @param request An object containing request data in public fields
    * @return object An object containing response data in public fields
    */
-  def executeUseCase(useCase: Nothing, request: Input): F[Output]
-
+  def executeExecutor(useCase: Nothing, request: Input): F[(Output, WriterValue)]
+   
 }
 
