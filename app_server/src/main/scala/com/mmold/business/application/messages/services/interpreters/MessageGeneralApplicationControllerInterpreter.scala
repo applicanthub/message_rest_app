@@ -52,7 +52,7 @@ final class MessageGeneralApplicationControllerInterpreter[IOEffect[_]: Monad](
 
   def viewMessageById(messageIdRepr: MessageId.Repr): IOEffect[Option[MessageDTO]] =
     messageIdFactory.create(messageIdRepr)
-      .fold(_ => monad.pure(None), { messageId => monad.map(messageRepository.readByMessageId(messageId))(_.map(messageToMessageDTO)) })
+      .fold(_ => monad.pure(None), { messageId => monadIOEffect.map(messageRepository.readByMessageId(messageId))(_.map(messageToMessageDTO)) })
 
   def viewMessagesSentBetweenUsers(eitherSenderOrRecipientId: (SenderId.Repr, RecipientId.Repr)): IOEffect[List[MessageDTO]] =
     (
