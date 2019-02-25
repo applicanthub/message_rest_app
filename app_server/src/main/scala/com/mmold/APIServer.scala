@@ -1,6 +1,5 @@
 package com.mmold
 
-import com.mmold.infrastructure.endpoints.finch.messages.StatsCounter
 import com.twitter.app.App
 import com.twitter.server.Admin
 import com.twitter.server.AdminHttpServer
@@ -17,4 +16,3 @@ trait APIServer extends App
   with Admin
   with Lifecycle
   with Stats
-  with StatsCounter
