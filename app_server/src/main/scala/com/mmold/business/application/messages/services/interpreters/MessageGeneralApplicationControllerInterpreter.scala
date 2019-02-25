@@ -35,7 +35,7 @@ final class MessageGeneralApplicationControllerInterpreter[IOEffect[_]: Monad](
   messageFactory: MessageFactorySendMessageFormInterpreter,
   messageRepository: MessageRepositoryAlgebra[IOEffect, List, MessageId, Message, SenderId, RecipientId]) extends MessageGeneralApplicationControllerAlgebra[IOEffect, CreateMessageCommand, MessageId.Repr, MessageDTO] {
 
-  private val monad = implicitly[Monad[IOEffect]]
+  private val monadIOEffect = implicitly[Monad[IOEffect]]
 
   private[interpreters] def messageToMessageDTO(from: Message): MessageDTO =
     MessageDTO(from.aggregateId.value, from.senderId.value, from.recipientId.value, from.isDeleted.value, from.body.value)
@@ -46,7 +46,7 @@ final class MessageGeneralApplicationControllerInterpreter[IOEffect[_]: Monad](
         createMessageCommand.senderId,
         createMessageCommand.recipientId,
         createMessageCommand.body)).toEither match {
-        case Right(message) => monad.map(messageRepository.createMessage(message))(_ => Some(messageToMessageDTO(message)))
+        case Right(message) => monadIOEffect.map(messageRepository.createMessage(message))(_ => Some(messageToMessageDTO(message)))
         case _ => monad.pure(None)
       }
 
@@ -58,11 +58,11 @@ final class MessageGeneralApplicationControllerInterpreter[IOEffect[_]: Monad](
     (
       senderIdFactory.create(eitherSenderOrRecipientId._1),
       recipientIdFactoryInterpreter.create(eitherSenderOrRecipientId._2))
-      .mapN((_, _)).fold(_ => monad.pure(List.empty), tup => monad.map(messageRepository.readMessageBetweenSenderAndRecipient(tup))(_.map(messageToMessageDTO)))
+      .mapN((_, _)).fold(_ => monadIOEffect.pure(List.empty), tup => monadIOEffect.map(messageRepository.readMessageBetweenSenderAndRecipient(tup))(_.map(messageToMessageDTO)))
 
   def deleteMessage(messageIdRepr: MessageId.Repr): IOEffect[Option[MessageId]] =
     messageIdFactory.create(messageIdRepr)
-      .fold(_ => monad.pure(None), messageId => monad.map(messageRepository.deleteMessage(messageId))(_ => Some(messageId)))
+      .fold(_ => monadIOEffect.pure(None), messageId => monadIOEffect.map(messageRepository.deleteMessage(messageId))(_ => Some(messageId)))
 
 }
 
