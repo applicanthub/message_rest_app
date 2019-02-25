@@ -1,11 +1,9 @@
 package com.spyops
 
+import com.twitter.app.App
 import java.util.logging.Level
 import java.util.logging.LogManager
-
 import org.slf4j.bridge.SLF4JBridgeHandler
-
-import com.twitter.app.App
 
 trait SLF4JLogging { self: App =>
   init {
