@@ -141,13 +141,13 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
    * @author Nick Odumo Feb 2019
    * @param mainMethodArgs Main method arguments
    */
-  def runApplication(arguments: List[String]): ListeningServer =
-    Http.server
-      // .configured(Stats(statsReceiver))
-      // .withTransport
-      //.tls(SslCertificate.configuration)
-      .serve(addr = ":" ++ applicationConfig.serverPortNumber.toString, applicationService)
-
+  def runApplication(arguments: List[String]): ListeningServer = {
+    Http.server.
+      //  configured(Stats(statsReceiver))}.
+      // withTransport.
+      //tls(SslCertificate.configuration).
+      serve(addr = ":" ++ applicationConfig.serverPortNumber.toString, applicationService)
+  }
 }
 
 object BootstrapInterpreter {
