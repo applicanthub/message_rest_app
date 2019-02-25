@@ -37,7 +37,7 @@ final class MessageGeneralApplicationControllerInterpreter[IOEffect[_]: Monad](
 
   private val monad = implicitly[Monad[IOEffect]]
 
-  private def messageToMessageDTO(from: Message): MessageDTO =
+  private[interpreters] def messageToMessageDTO(from: Message): MessageDTO =
     MessageDTO(from.aggregateId.value, from.senderId.value, from.recipientId.value, from.isDeleted.value, from.body.value)
 
   def sendMessage(createMessageCommand: CreateMessageCommand): IOEffect[Option[MessageDTO]] =
