@@ -35,7 +35,6 @@ final class UsersFinchIOEndpointsV1Interpreter(
 
   private lazy val xHeaderAuth = header(AUTH_HEADER_KEY)
 
-  /** Authenticate the user using application layer. */
   def authenticate: FinchIOEndpoint[UserCredentials] =
     post("v1" :: "users" :: "commands" :: "login" :: jsonBody[LoginCommandDTO]) { loginCommand: LoginCommandDTO =>
       usersGeneralApplicationService.loginJWT(loginCommand)
@@ -49,7 +48,6 @@ final class UsersFinchIOEndpointsV1Interpreter(
         })
     }
 
-  /** Retrieve the use application. */
   def showUser: FinchIOEndpoint[String] =
     get("v1" :: "users" :: path[UserId.Repr] :: xHeaderAuth) { (userId: UserId.Repr, _: String) =>
       IO.delay(userId).map(value => value match {

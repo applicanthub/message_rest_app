@@ -13,6 +13,7 @@ libraryDependencies ++= {
   val scalatestVersion = "3.0.5"
   val finagleVersion = "19.1.0"
   Seq(
+    "com.devskiller" % "jfairy" % "0.6.2",
     "com.github.finagle" %% "finchx-core" % finchVersion,
     "com.github.finagle" %% "finchx-circe" % finchVersion,
     "com.github.finagle" %% "finch-argonaut" % finchVersion,
