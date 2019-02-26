@@ -6,6 +6,11 @@ import com.twitter.util.Await
 
 object BusinessApplication extends APIServer {
 
+  /**
+   * HTTP application.
+   *
+   * @author Nick Odumo Feb 2019
+   */
   def main(): Unit = {
     val applicationConfig = ApplicationConfig.loadConfigIO
 

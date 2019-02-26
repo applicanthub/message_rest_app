@@ -8,6 +8,11 @@ import com.twitter.server.Lifecycle
 import com.twitter.server.Linters
 import com.twitter.server.Stats
 
+/**
+ * API server definition.
+ *
+ * @author Nick Odumo Feb 2019
+ */
 trait APIServer extends App
   with SLF4JLogging
   with Linters
