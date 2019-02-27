@@ -6,7 +6,7 @@ import io.circe.{ Decoder, Encoder }
 import io.circe.generic.semiauto.{ deriveDecoder, deriveEncoder }
 
 /**
- * Message DTO.
+ * DTO for [[com.mmold.business.domain.messages.models.aggregates.Message]].
  *
  * @author Nick Odumo Feb 2019
  * @param messageId Message Id
@@ -23,6 +23,9 @@ final case class MessageDTO(
   content: Body.Repr) extends DTO
 
 object MessageDTO {
+
   implicit val decoder: Decoder[MessageDTO] = deriveDecoder[MessageDTO]
+
   implicit val encoder: Encoder[MessageDTO] = deriveEncoder[MessageDTO]
+
 }
