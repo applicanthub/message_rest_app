@@ -5,4 +5,4 @@ package com.mmold.components.nashorn
  *
  * @author Nick Odumo Feb 2019
  */
-final case class NashornRawResult[A](value: A)
+final case class NashornRawResult(value: String)
