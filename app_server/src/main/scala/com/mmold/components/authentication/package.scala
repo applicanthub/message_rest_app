@@ -1,6 +1,5 @@
 package com.mmold.components
 
-package object nashorn {
+package object authentication {
 
 }
-
