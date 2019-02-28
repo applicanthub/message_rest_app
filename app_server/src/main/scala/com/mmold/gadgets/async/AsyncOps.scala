@@ -4,12 +4,11 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.TimeUnit._
 import com.twitter.util._
 
-
 /**
-  * Run Async.
-  *
-  * @author Nick Odumo Feb 2019
-  */
+ * Run Async.
+ *
+ * @author Nick Odumo Feb 2019
+ */
 trait AsyncOps {
 
   /**
