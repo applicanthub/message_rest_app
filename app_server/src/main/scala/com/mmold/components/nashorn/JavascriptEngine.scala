@@ -13,7 +13,8 @@ case object JDKRhino extends JavascriptEngine
 
 case object JDKNashorn extends JavascriptEngine
 
-final case class Custom(name: JavascriptEngine.EngineName) extends JavascriptEngine
+final case class Custom(
+  name: JavascriptEngine.EngineName) extends JavascriptEngine
 
 object JavascriptEngine {
 
