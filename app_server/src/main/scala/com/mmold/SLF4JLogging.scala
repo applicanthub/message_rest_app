@@ -18,7 +18,7 @@ trait SLF4JLogging { self: App =>
 
   init {
     LogManager.getLogManager.getLogger(LoggerName).getHandlers.toList.foreach { logger =>
-      logger.setLevel(Level.OFF)   
+      logger.setLevel(Level.OFF)
     }
     SLF4JBridgeHandler.install()
   }
