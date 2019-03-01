@@ -14,13 +14,17 @@ import org.slf4j.bridge.SLF4JBridgeHandler
  */
 trait SLF4JLogging { self: App =>
 
-  protected val LoggerName = ""
+  protected val LoggerName = "AppLogger"
 
   init {
-    LogManager.getLogManager.getLogger(LoggerName).getHandlers.toList.foreach { logger =>
-      logger.setLevel(Level.OFF)
+    try {
+      LogManager.getLogManager.getLogger(LoggerName).getHandlers.toList.foreach { logger =>
+        logger.setLevel(Level.OFF)
+      }
+      SLF4JBridgeHandler.install()
+    } catch {
+      case _: Throwable => println("[Error] Initialization error Bootstrapping SLF4JLogging.")
     }
-    SLF4JBridgeHandler.install()
   }
 
   onExit {

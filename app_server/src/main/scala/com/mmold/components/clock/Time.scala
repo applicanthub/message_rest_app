@@ -44,6 +44,7 @@ trait TimeRepresentation
  * Full timestamp.
  *
  * @author Nick Odumo Feb 2019
+ * @param timeZoneD
  * @param year
  * @param month
  * @param day
@@ -53,6 +54,7 @@ trait TimeRepresentation
  * @param milliSeconds
  */
 final case class FullStamp(
+  timeZoneD: TimeZoneD,
   year: Year,
   month: Month,
   day: Day,

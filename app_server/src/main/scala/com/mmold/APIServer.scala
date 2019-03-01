@@ -14,11 +14,11 @@ import com.twitter.server.Stats
  * @author Nick Odumo Feb 2019
  */
 trait APIServer extends App
-  with SLF4JLogging
   with Linters
   with Hooks
   with AdminHttpServer
   with Admin
   with Lifecycle
   with Stats
+  with SLF4JLogging
 

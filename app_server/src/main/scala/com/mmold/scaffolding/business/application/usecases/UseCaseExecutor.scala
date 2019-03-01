@@ -5,6 +5,8 @@ import cats.Show
 
 /**
  * Log the business logic result.
+ * Although logically logging is part of ot the the definition usecase going to go ahead and assert that it makes sense
+ * to log a value that is produce by the usecase. It just makes sense to propogate messages to the top layer of the application.
  *
  * @author Nick Odumo Feb 2019
  * @todo Implement context object
