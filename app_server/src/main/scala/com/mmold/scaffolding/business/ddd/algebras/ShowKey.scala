@@ -8,8 +8,8 @@ trait ShowKey[A] {
 
 object ShowKey {
 
-  def fromFunction[A](f: A => String): ShowKey[A] = new ShowKey[A] {
-    def showKey(value: A): Key = Key(f(value))
+  def fromShowFunction[A](showFun: A => String): ShowKey[A] = new ShowKey[A] {
+    def showKey(value: A): Key = Key(showFun(value))
   }
 
   final case class Key private[algebras] (value: String) extends AnyVal
