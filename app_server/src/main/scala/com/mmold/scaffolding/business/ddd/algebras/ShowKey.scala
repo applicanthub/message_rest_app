@@ -1,5 +1,11 @@
 package com.mmold.scaffolding.business.ddd.algebras
 
+/**
+ * API server definition.
+ *
+ * @author Nick Odumo Feb 2019
+ * @tparam A Value
+ */
 trait ShowKey[A] {
 
   def showKey(value: A): ShowKey.Key
