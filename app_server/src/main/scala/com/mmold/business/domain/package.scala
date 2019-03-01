@@ -10,6 +10,8 @@ import scala.util.matching.Regex
 
 package object domain {
 
+  type DateTime = String
+
   type ModelValidation[V] = ValidatedNec[ModelValidationError, V]
 
   type DomainModelFactory[To, From] = FactoryAlgebra[ModelValidation, From, To]
