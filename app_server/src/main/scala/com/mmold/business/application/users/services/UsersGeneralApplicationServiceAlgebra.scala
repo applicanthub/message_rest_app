@@ -6,7 +6,7 @@ import cats.Monad
  * Users application interface.
  * This is the glue between the domain and the infrastructural layer.
  *
- * @author Nick Odumo Feb 2019*
+ * @author Nick Odumo Feb 2019  *
  * @usecase Application layer composition for Users.
  * @tparam F IO Effect
  * @tparam LoginCommand Command

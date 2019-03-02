@@ -1,4 +1,4 @@
-package com.mmold.scaffolding.business.application
+package com.mmold.scaffolding.business.application.application
 
 /**
  * Represents an application interface.

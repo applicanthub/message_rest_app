@@ -1,8 +1,13 @@
+/**
+ * @copyright Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @license See LICENSE.txt
+ */
 package com.mmold
 
 import com.mmold.bootstrap.interpreters.BootstrapInterpreter
 import com.mmold.configs.ApplicationConfig
 import com.twitter.util.Await
+import org.fusesource.scalate.TemplateEngine
 
 /**
  * "Truth can only be found in one place: the code."
@@ -13,7 +18,7 @@ import com.twitter.util.Await
  * - Domain-driven-design
  * - Functional first
  *
- * @author NicK Odumo Feb 2019
+ * @author Nick Odumo Feb 2019
  */
 object BusinessApplication extends APIServer {
 
@@ -24,6 +29,10 @@ object BusinessApplication extends APIServer {
    */
   def main(): Unit = {
     val applicationConfig = ApplicationConfig.loadConfigIO
+
+    val engine = (new TemplateEngine)
+    val index = engine.layout(uri = "scalate/demo.ssp")
+    println(index)
 
     applicationConfig match {
       case Left(exceptionsLinearCollection) =>

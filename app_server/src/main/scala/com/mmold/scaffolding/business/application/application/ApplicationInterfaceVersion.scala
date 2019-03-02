@@ -1,6 +1,6 @@
-package com.mmold.scaffolding.business.application
+package com.mmold.scaffolding.business.application.application
 
-import com.mmold.scaffolding.business.application.ApplicationInterfaceVersion.Repr
+import ApplicationInterfaceVersion.Repr
 
 final case class ApplicationInterfaceVersion private (value: Repr)
 

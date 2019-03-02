@@ -9,8 +9,20 @@
 		extra-sbtVersion="0.13"
 		conf="runtime-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20190223105313"/>
+		date="20190302145535"/>
 	<dependencies>
+		<module organisation="org.scalatra.scalate" name="sbt-scalate-precompiler">
+			<revision name="1.8.0.1" status="release" pubdate="20161230031648" resolver="public" artresolver="public" homepage="https://github.com/scalate/sbt-scalate-precompiler" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="6">
+				<license name="MIT License" url="http://www.opensource.org/licenses/mit-license.php"/>
+				<metadata-artifact status="successful" details="" size="2340" time="361" location="/home/nick/.ivy2/cache/scala_2.10/sbt_0.13/org.scalatra.scalate/sbt-scalate-precompiler/ivy-1.8.0.1.xml" searched="true" original-local-location="/home/nick/.ivy2/cache/scala_2.10/sbt_0.13/org.scalatra.scalate/sbt-scalate-precompiler/ivy-1.8.0.1.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scalatra/scalate/sbt-scalate-precompiler_2.10_0.13/1.8.0.1/sbt-scalate-precompiler-1.8.0.1.pom"/>
+				<caller organisation="default" name="app_server-build" conf="compile, runtime-internal, runtime, optional" rev="1.8.0.1" rev-constraint-default="1.8.0.1" rev-constraint-dynamic="1.8.0.1" callerrev="0.1-SNAPSHOT" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
+				<artifacts>
+					<artifact name="sbt-scalate-precompiler" type="jar" ext="jar" status="successful" details="" size="43068" time="509" location="/home/nick/.ivy2/cache/scala_2.10/sbt_0.13/org.scalatra.scalate/sbt-scalate-precompiler/jars/sbt-scalate-precompiler-1.8.0.1.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scalatra/scalate/sbt-scalate-precompiler_2.10_0.13/1.8.0.1/sbt-scalate-precompiler-1.8.0.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
 		<module organisation="org.scalariform" name="sbt-scalariform">
 			<revision name="1.8.2" status="release" pubdate="20171028102507" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/sbt/sbt-scalariform" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="3">
 				<license name="Apache-2.0" url="https://www.apache.org/licenses/LICENSE-2.0"/>
@@ -60,7 +72,7 @@
 			</revision>
 		</module>
 		<module organisation="org.scala-sbt" name="global-plugins">
-			<revision name="0.0" status="integration" pubdate="20190223105312" resolver="inter-project" artresolver="inter-project" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="0">
+			<revision name="0.0" status="integration" pubdate="20190302145533" resolver="inter-project" artresolver="inter-project" extra-scalaVersion="2.10" extra-sbtVersion="0.13" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="0">
 				<metadata-artifact status="failed" details="" size="0" time="0" searched="false"/>
 				<caller organisation="default" name="app_server-build" conf="compile, runtime-internal, runtime, optional" rev="0.0" rev-constraint-default="0.0" rev-constraint-dynamic="0.0" callerrev="0.1-SNAPSHOT" extra-scalaVersion="2.10" extra-sbtVersion="0.13"/>
 				<artifacts>

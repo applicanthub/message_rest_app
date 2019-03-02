@@ -21,4 +21,3 @@ trait APIServer extends App
   with Lifecycle
   with Stats
   with SLF4JLogging
-

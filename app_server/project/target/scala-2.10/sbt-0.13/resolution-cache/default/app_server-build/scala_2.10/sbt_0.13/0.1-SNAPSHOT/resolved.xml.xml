@@ -4,7 +4,7 @@
 		module="app_server-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20190223105313"
+		publication="20190302145535"
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>
@@ -47,5 +47,6 @@
 		<dependency org="org.scalariform" name="sbt-scalariform" rev="1.8.2" conf="compile->default(compile)" e:sbtVersion="0.13" e:scalaVersion="2.10"/>
 		<dependency org="org.spire-math" name="kind-projector_2.10" rev="0.9.7" conf="plugin->default(compile)"/>
 		<dependency org="org.scalamacros" name="paradise_2.10.6" rev="2.1.0" conf="plugin->default(compile)"/>
+		<dependency org="org.scalatra.scalate" name="sbt-scalate-precompiler" rev="1.8.0.1" conf="compile->default(compile)" e:sbtVersion="0.13" e:scalaVersion="2.10"/>
 	</dependencies>
 </ivy-module>

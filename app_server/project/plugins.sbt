@@ -8,3 +8,4 @@ addCompilerPlugin("org.spire-math" % "kind-projector" % "0.9.7" cross CrossVersi
 
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 
+addSbtPlugin("org.scalatra.scalate" % "sbt-scalate-precompiler" % "1.8.0.1")

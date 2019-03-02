@@ -1,4 +1,4 @@
-package com.mmold.scaffolding.business.application.usecases
+package com.mmold.scaffolding.business.application.application.usecases
 
 import cats.Monad
 import cats.Show

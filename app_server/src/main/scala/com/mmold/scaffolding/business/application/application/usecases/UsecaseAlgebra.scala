@@ -1,6 +1,6 @@
-package com.mmold.scaffolding.business.application.usecases
+package com.mmold.scaffolding.business.application.application.usecases
 
-import com.mmold.scaffolding.business.application.ApplicationInterfaceAlgebra
+import com.mmold.scaffolding.business.application.application.ApplicationInterfaceAlgebra
 
 /**
  * Represents an application usecase.

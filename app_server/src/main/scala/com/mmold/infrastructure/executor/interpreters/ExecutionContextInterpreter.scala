@@ -1,7 +1,9 @@
-package com.mmold.gadgets.async
+package com.mmold.infrastructure.executor.interpreters
 
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.TimeUnit._
+
+import com.mmold.infrastructure.executor.ExecutionContextAlgebra
 import com.twitter.util._
 
 /**
@@ -9,7 +11,7 @@ import com.twitter.util._
  *
  * @author Nick Odumo Feb 2019
  */
-trait AsyncOps {
+trait ExecutionContextIntepreter extends ExecutionContextAlgebra {
 
   /**
    * Run Async.
@@ -73,4 +75,4 @@ trait AsyncOps {
   }
 }
 
-object AsyncOps extends AsyncOps
+object ExecutionContextIntepreter extends ExecutionContextIntepreter

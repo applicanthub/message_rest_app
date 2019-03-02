@@ -2,7 +2,7 @@ name := "app_server"
 version := "0.1"
 scalaVersion := "2.12.7"
 
-lazy val root = project in file(".")
+lazy val root = Project("root", file(".")).settings(templateSettings:_*)
 
 scalacOptions ++= SBTSettings.value
 
@@ -32,7 +32,8 @@ libraryDependencies ++= {
     "org.atnos" % "eff-doobie_2.12" % "5.1.0",
     "org.specs2" %% "specs2-core" % "4.3.4" % "test",
     "org.scalatest" %% "scalatest" % scalatestVersion % "test",
-    "org.tpolecat" %% "doobie-core" % DoobieVersion,
+    "org.scalatra.scalate" %% "scalate-core" % "1.9.1-RC1",
+  "org.tpolecat" %% "doobie-core" % DoobieVersion,
     "org.tpolecat" %% "doobie-h2" % DoobieVersion,
     "org.tpolecat" %% "doobie-scalatest" % DoobieVersion,
     "org.tpolecat" %% "doobie-hikari" % DoobieVersion,

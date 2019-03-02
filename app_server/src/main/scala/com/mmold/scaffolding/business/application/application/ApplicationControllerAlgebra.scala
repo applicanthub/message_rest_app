@@ -1,6 +1,4 @@
-package com.mmold.scaffolding.business.application.controllers
-
-import com.mmold.scaffolding.business.application.ApplicationInterfaceAlgebra
+package com.mmold.scaffolding.business.application.application
 
 /**
  * Represents an application interface.
