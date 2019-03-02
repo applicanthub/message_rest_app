@@ -14,11 +14,9 @@ import org.slf4j.bridge.SLF4JBridgeHandler
  */
 trait SLF4JLogging { self: App =>
 
-  protected val LoggerName = "AppLogger"
-
   init {
     try {
-      LogManager.getLogManager.getLogger(LoggerName).getHandlers.toList.foreach { logger =>
+      LogManager.getLogManager.getLogger("AppLogger").getHandlers.toList.foreach { logger =>
         logger.setLevel(Level.OFF)
       }
       SLF4JBridgeHandler.install()

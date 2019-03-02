@@ -1,4 +1,4 @@
-package com.mmold.business.domain.Report.models
+package com.mmold.business.domain.report.models
 
 import com.mmold.business.domain.DateTime
 

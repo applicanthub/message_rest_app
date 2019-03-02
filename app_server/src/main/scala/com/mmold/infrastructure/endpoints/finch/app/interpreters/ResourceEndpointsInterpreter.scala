@@ -1,5 +1,7 @@
 package com.mmold.infrastructure.endpoints.finch.app.interpreters
 
+import com.mmold.infrastructure.endpoints.finch.app.ResourceEndpointsAlgebra
+
 class ResourceEndpointsInterpreter extends ResourceEndpointsAlgebra {
 
   // def _uploadEndpoint: FinchIOEndpoint[String] = post("acceptfile" :: fileUpload("file")) { upload: FileUpload => Ok("")}
