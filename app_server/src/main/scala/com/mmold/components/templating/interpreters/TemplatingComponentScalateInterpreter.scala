@@ -15,7 +15,7 @@ import TemplatingComponentScalateInterpreter._
  */
 final class TemplatingComponentScalateInterpreter(
   engine: TemplateEngine,
-  templateDirectoryPath: TemplateDirectoryPath) extends TemplatingComponentAlgebra[F, TemplateDirectoryPath, TemplateName, State, ResultObject] {
+  templateDirectoryPath: TemplateDirectoryPath) extends TemplatingComponentAlgebra[F, TemplateDirectoryPath, TemplateName, State, ScalateResult] {
 
   /**
    * Render template.
@@ -24,8 +24,8 @@ final class TemplatingComponentScalateInterpreter(
    * @param name Template name
    * @param state State to pass into template
    */
-  def render(name: TemplateName)(state: State): F[ResultObject] =
-    IO.delay(ResultObject(engine.layout(templateDirectoryPath ++ "/" ++ name, state)))
+  def render(name: TemplateName)(state: State): F[ScalateResult] =
+    IO.delay(ScalateResult(engine.layout(templateDirectoryPath ++ "/" ++ name, state)))
 
 }
 
@@ -44,7 +44,5 @@ object TemplatingComponentScalateInterpreter {
 
   def default(templateEngine: TemplateEngine): TemplatingComponentScalateInterpreter =
     apply(templateEngine, templateDirectoryPath = "scalate")
-
-  final case class ResultObject private[TemplatingComponentScalateInterpreter] (value: String)
 
 }
