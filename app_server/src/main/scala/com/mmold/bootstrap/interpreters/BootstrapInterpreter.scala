@@ -127,14 +127,13 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
       usersFinchRoutes :+: swaggerFinchRoutes.routes :+: pageEndpointsInterpreter.routes
 
   // private val routePage = pageEndpointsInterpreter.routes
+
   //================================================================================
   // Route: Services
   //================================================================================
 
   private val applicationService =
-    finch.corsFilter
-      .andThen(routeCoproduct.toServiceAs[Application.Json])
-  //  .andThen(routePage.toServiceAs[Application.Json])
+    finch.corsFilter.andThen(routeCoproduct.toServiceAs[Application.Json])
 
   //================================================================================
   // Route: Application entry
