@@ -1,3 +1,6 @@
 package com.mmold.components.templating.interpreters
 
-final case class ScalateTemplateConfig()
+import com.mmold.components.templating.interpreters.TemplatingComponentScalateInterpreter.TemplateDirectoryPath
+
+final case class ScalateTemplateConfig(
+  templateDirectoryPath: TemplateDirectoryPath)
