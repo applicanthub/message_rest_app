@@ -1,3 +1,10 @@
 package com.mmold.components.templating.interpreters
 
-final case class ScalateResult private[interpreters] (value: String)
+/**
+ * Scalate result.
+ *
+ * @author Nick Odumo Feb 2019
+ * @param value Value
+ */
+final case class ScalateResult private[interpreters] (
+  value: String)

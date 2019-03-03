@@ -19,7 +19,6 @@ final class TemplatingComponentScalateInterpreter(
 
   /**
    * Render template.
-   *
    * @author Nick Odumo Feb 2019
    * @param name Template name
    * @param state State to pass into template

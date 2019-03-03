@@ -22,12 +22,6 @@ import org.fusesource.scalate.TemplateEngine
  */
 object BusinessApplication extends APIServer {
 
-  def tryTemplating = {
-    val engine = new TemplateEngine
-    val index = engine.layout(uri = "scalate/master.ssp", Map("title" -> "title"))
-    println(index)
-  }
-
   /**
    * HTTP application.
    *
@@ -35,7 +29,7 @@ object BusinessApplication extends APIServer {
    */
   def main(): Unit = {
     val applicationConfig = ApplicationConfig.loadConfigIO
-    tryTemplating
+
     applicationConfig match {
       case Left(exceptionsLinearCollection) =>
         exceptionsLinearCollection.toList.foreach(println)
