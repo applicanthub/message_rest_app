@@ -14,10 +14,8 @@ import TemplatingComponentScalateInterpreters._
  * @param state State to pass into template
  */
 final class TemplatingComponentScalateInterpreters(
+  engine: TemplateEngine,
   templateDirectoryPath: TemplateDirectoryPath) extends TemplatingComponentAlgebra[F, TemplateDirectoryPath, TemplateName, State, ResultObject] {
-
-  // Template rendering engine
-  private val engine = new TemplateEngine
 
   /**
    * Render template.
@@ -41,11 +39,11 @@ object TemplatingComponentScalateInterpreters {
 
   type F[A] = IO[A]
 
-  def apply(templateDirectoryPath: String): TemplatingComponentScalateInterpreters =
-    new TemplatingComponentScalateInterpreters(templateDirectoryPath)
+  def apply(engine: TemplateEngine, templateDirectoryPath: String): TemplatingComponentScalateInterpreters =
+    new TemplatingComponentScalateInterpreters(engine, templateDirectoryPath)
 
-  def default: TemplatingComponentScalateInterpreters =
-    apply(templateDirectoryPath = "scalate")
+  def default(templateEngine: TemplateEngine): TemplatingComponentScalateInterpreters =
+    apply(templateEngine, templateDirectoryPath = "scalate")
 
   final case class ResultObject(value: String)
 
