@@ -5,12 +5,12 @@ package com.mmold.components.websocket
  *
  * @author Nick Odumo Feb 2019
  * @tparam F Effect
- * @tparam Linear Collection
+ * @tparam Collection Collection
  * @tparam Channel Channel to broadcast this on.
  * @tparam Event Event
  * @tparam Payload Payload content
  */
-trait WebSocketThirdPartyAlgebra[F[_], Linear[_], Channel, Event, Payload] {
+trait WebSocketThirdPartyAlgebra[F[_], Collection[_], Channel, Event, Payload] {
 
   /**
    * Trigger event on channel.
@@ -21,7 +21,7 @@ trait WebSocketThirdPartyAlgebra[F[_], Linear[_], Channel, Event, Payload] {
    * @param payload Payload content
    */
   def trigger(
-    channels: Linear[Channel],
+    channels: Collection[Channel],
     event: Event,
     payload: Payload): F[Unit]
 
