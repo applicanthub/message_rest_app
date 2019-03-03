@@ -3,7 +3,7 @@ package com.mmold.components.templating.interpreters
 import cats.effect.IO
 import com.mmold.components.templating.TemplatingComponentAlgebra
 import org.fusesource.scalate.TemplateEngine
-import TemplatingComponentScalateInterpreters._
+import TemplatingComponentScalateInterpreter._
 
 /**
  * Template component based on scalate.
@@ -13,7 +13,7 @@ import TemplatingComponentScalateInterpreters._
  * @param name Template name
  * @param state State to pass into template
  */
-final class TemplatingComponentScalateInterpreters(
+final class TemplatingComponentScalateInterpreter(
   engine: TemplateEngine,
   templateDirectoryPath: TemplateDirectoryPath) extends TemplatingComponentAlgebra[F, TemplateDirectoryPath, TemplateName, State, ResultObject] {
 
@@ -29,7 +29,7 @@ final class TemplatingComponentScalateInterpreters(
 
 }
 
-object TemplatingComponentScalateInterpreters {
+object TemplatingComponentScalateInterpreter {
 
   type TemplateDirectoryPath = String
 
@@ -39,12 +39,12 @@ object TemplatingComponentScalateInterpreters {
 
   type F[A] = IO[A]
 
-  def apply(engine: TemplateEngine, templateDirectoryPath: String): TemplatingComponentScalateInterpreters =
-    new TemplatingComponentScalateInterpreters(engine, templateDirectoryPath)
+  def apply(engine: TemplateEngine, templateDirectoryPath: String): TemplatingComponentScalateInterpreter =
+    new TemplatingComponentScalateInterpreter(engine, templateDirectoryPath)
 
-  def default(templateEngine: TemplateEngine): TemplatingComponentScalateInterpreters =
+  def default(templateEngine: TemplateEngine): TemplatingComponentScalateInterpreter =
     apply(templateEngine, templateDirectoryPath = "scalate")
 
-  final case class ResultObject(value: String)
+  final case class ResultObject private[TemplatingComponentScalateInterpreter] (value: String)
 
 }
