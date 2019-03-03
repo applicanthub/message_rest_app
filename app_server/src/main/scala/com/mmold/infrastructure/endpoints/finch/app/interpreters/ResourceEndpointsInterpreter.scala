@@ -13,3 +13,8 @@ class ResourceEndpointsInterpreter extends ResourceEndpointsAlgebra {
   //  }
 
 }
+object ResourceEndpointsInterpreter {
+
+  def apply: ResourceEndpointsInterpreter = new ResourceEndpointsInterpreter()
+
+}

@@ -3,8 +3,8 @@ package com.mmold.bootstrap.interpreters
 import doobie._
 import cats.effect.IO
 
-import scala.concurrent.ExecutionContext
 import io.finch.circe._
+import io.finch.Application
 import com.twitter.finagle.{ Http, ListeningServer }
 import com.mmold.bootstrap.BootstrapAlgebra
 import com.mmold.business.application.messages.services.interpreters.MessageGeneralApplicationControllerInterpreter
@@ -12,15 +12,15 @@ import com.mmold.business.application.users.services.interpreters.{ CreateUserTo
 import com.mmold.business.domain.messages.services.interpreters._
 import com.mmold.configs.{ ApplicationConfig, ServiceSwaggerConfig }
 import com.mmold.business.domain.users.services.interpreters.UsernameFactoryInterpreter
-import com.mmold.infrastructure.endpoints.finch.app.interpreters.{ HealthFinchIOEndpointsAPIV1Interpreter, SwaggerFinchIOEndpointsSwaggerV2Interpreter }
+import com.mmold.infrastructure.endpoints.finch.app.interpreters.{ HealthFinchIOEndpointsAPIV1Interpreter, PageEndpointsInterpreter, SwaggerFinchIOEndpointsSwaggerV2Interpreter }
 import com.mmold.infrastructure.endpoints.finch.users.interpreters.UsersFinchIOEndpointsV1Interpreter
 import com.mmold.infrastructure.repositories.doobie.users.interpreters.UserRepositoryDoobieFInterpreter
 import com.mmold.infrastructure.endpoints.finch
 import com.mmold.infrastructure.endpoints.finch.ServiceSwaggerModule
-import io.finch.Application
 import com.mmold.infrastructure.endpoints.finch.messages.interpreters.MessageEndpointsInterpreters
 import com.mmold.infrastructure.repositories.doobie.messages.interpreters.MessageDoobieRepositoryInterpreter
 import com.mmold.infrastructure.endpoints.finch.SwaggerFinchEndpointRegistry
+import scala.concurrent.ExecutionContext
 /**
  * Application Bootstrap builder.
  * In functional programming terms this is the "End of the world" where functions are impure.
@@ -114,6 +114,7 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   // Route: Root
   //================================================================================
 
+  private val pageEndpointsInterpreter = new PageEndpointsInterpreter
   private val serviceSwaggerModule = new ServiceSwaggerModule(ServiceSwaggerConfig.default())
   private val swagger = serviceSwaggerModule.swagger
   private val a = new SwaggerFinchEndpointRegistry(ServiceSwaggerConfig.default())(swagger).tryIt()
@@ -123,13 +124,17 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   private val routeCoproduct = // @todo Refactor to infrastructure and then
     applicationFinchRoutes :+:
       messageFinchRoutes :+:
-      usersFinchRoutes :+: swaggerFinchRoutes.routes
+      usersFinchRoutes :+: swaggerFinchRoutes.routes :+: pageEndpointsInterpreter.routes
 
+  // private val routePage = pageEndpointsInterpreter.routes
   //================================================================================
   // Route: Services
   //================================================================================
 
-  private val applicationService = finch.corsFilter.andThen(routeCoproduct.toServiceAs[Application.Json])
+  private val applicationService =
+    finch.corsFilter
+      .andThen(routeCoproduct.toServiceAs[Application.Json])
+  //  .andThen(routePage.toServiceAs[Application.Json])
 
   //================================================================================
   // Route: Application entry
