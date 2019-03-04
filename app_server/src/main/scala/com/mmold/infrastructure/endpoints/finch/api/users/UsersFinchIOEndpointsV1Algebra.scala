@@ -1,4 +1,4 @@
-package com.mmold.infrastructure.endpoints.finch.users
+package com.mmold.infrastructure.endpoints.finch.api.users
 
 import com.mmold.infrastructure.endpoints.finch.{ FinchEndpointAlgebra, FinchIOEndpoint }
 

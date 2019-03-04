@@ -8,12 +8,12 @@ import WebSocketThirdPartyInterpreter.{ F, Collection, Channel, Event, Payload }
  * Pusher websocket implementation.
  *
  * @author Nick Odumo Feb 2019
- * @todo Upgrade class with a lot more functionality 
+ * @todo Upgrade class with a lot more functionality
  * @param pusherConfig Pusher config details
  */
 final class WebSocketThirdPartyInterpreter(
   pusherConfig: PusherConfig) extends WebSocketThirdPartyAlgebra[F, Collection, Channel, Event, Payload] {
-  
+
   /**
    * Trigger pusher message to relevant channels.
    *
@@ -38,4 +38,4 @@ object WebSocketThirdPartyInterpreter {
 
   type Payload = PusherPayload
 
-} 
+}

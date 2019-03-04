@@ -1,7 +1,7 @@
-package com.mmold.infrastructure.endpoints.finch.app.interpreters
+package com.mmold.infrastructure.endpoints.finch.api.app.interpreters
 
 import com.mmold.infrastructure.endpoints.finch.FinchIOEndpoint
-import com.mmold.infrastructure.endpoints.finch.app.SwaggerFinchIOEndpointsAlgebra
+import com.mmold.infrastructure.endpoints.finch.api.app.SwaggerFinchIOEndpointsAlgebra
 import com.twitter.finagle.http.Status
 import io.circe.Json
 import io.circe.parser.parse

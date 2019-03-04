@@ -1,6 +1,6 @@
-package com.mmold.infrastructure.endpoints.finch.app.interpreters
+package com.mmold.infrastructure.endpoints.finch.api.app.interpreters
 
-import com.mmold.infrastructure.endpoints.finch.app.ResourceEndpointsAlgebra
+import com.mmold.infrastructure.endpoints.finch.api.app.ResourceEndpointsAlgebra
 
 class ResourceEndpointsInterpreter extends ResourceEndpointsAlgebra {
 

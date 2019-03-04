@@ -1,4 +1,4 @@
-package com.mmold.infrastructure.endpoints.finch.messages.interpreters
+package com.mmold.infrastructure.endpoints.finch.api.messages.interpreters
 
 import cats.effect.IO
 import com.mmold.business.application.controllers.messages.models.commands.CreateMessageCommand
@@ -6,7 +6,7 @@ import com.mmold.business.application.controllers.messages.models.dtos.MessageDT
 import com.mmold.business.application.controllers.messages.services.interpreters.MessageGeneralApplicationControllerInterpreter
 import com.mmold.business.domain.messages.models.values.{ MessageId, RecipientId, SenderId }
 import com.mmold.infrastructure.endpoints.finch.FinchIOEndpoint
-import com.mmold.infrastructure.endpoints.finch.messages.MessagesEndpointsAlgebra
+import com.mmold.infrastructure.endpoints.finch.api.messages.MessagesEndpointsAlgebra
 import io.finch.circe._
 import io.finch.{ Created, NotFound, Ok }
 import io.finch.catsEffect.{ delete, get, jsonBody, path, post }

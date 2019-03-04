@@ -1,4 +1,4 @@
-package com.mmold.infrastructure.endpoints.finch.messages
+package com.mmold.infrastructure.endpoints.finch.api.messages
 
 import com.mmold.infrastructure.endpoints.finch.{ FinchEndpointAlgebra, FinchIOEndpoint }
 

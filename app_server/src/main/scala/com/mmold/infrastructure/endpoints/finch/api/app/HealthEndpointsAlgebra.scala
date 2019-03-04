@@ -1,4 +1,4 @@
-package com.mmold.infrastructure.endpoints.finch.app
+package com.mmold.infrastructure.endpoints.finch.api.app
 
 import com.mmold.infrastructure.endpoints.finch.FinchIOEndpoint
 import shapeless.{ :+:, CNil }

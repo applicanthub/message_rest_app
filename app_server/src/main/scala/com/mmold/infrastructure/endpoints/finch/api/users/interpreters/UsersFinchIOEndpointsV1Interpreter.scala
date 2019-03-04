@@ -1,4 +1,4 @@
-package com.mmold.infrastructure.endpoints.finch.users.interpreters
+package com.mmold.infrastructure.endpoints.finch.api.users.interpreters
 
 import cats.effect.IO
 import com.mmold.business.application.controllers.users.models.commands.LoginCommandDTO
@@ -7,7 +7,7 @@ import com.mmold.business.application.controllers.users.services.UsersGeneralApp
 import com.mmold.business.domain.users.models.aggregates.User
 import com.mmold.business.domain.users.models.values.UserId
 import com.mmold.infrastructure.endpoints.finch.FinchIOEndpoint
-import com.mmold.infrastructure.endpoints.finch.users.UsersFinchIOEndpointsV1Algebra
+import com.mmold.infrastructure.endpoints.finch.api.users.UsersFinchIOEndpointsV1Algebra
 import io.finch.circe._
 import io.finch._
 import io.finch.catsEffect._

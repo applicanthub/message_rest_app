@@ -12,12 +12,12 @@ import com.mmold.business.application.controllers.users.services.interpreters.{ 
 import com.mmold.business.domain.messages.services.interpreters._
 import com.mmold.configs.{ ApplicationConfig, ServiceSwaggerConfig }
 import com.mmold.business.domain.users.services.interpreters.UsernameFactoryInterpreter
-import com.mmold.infrastructure.endpoints.finch.app.interpreters.{ HealthFinchIOEndpointsAPIV1Interpreter, PageEndpointsInterpreter, SwaggerFinchIOEndpointsSwaggerV2Interpreter }
-import com.mmold.infrastructure.endpoints.finch.users.interpreters.UsersFinchIOEndpointsV1Interpreter
+import com.mmold.infrastructure.endpoints.finch.api.app.interpreters.{ HealthFinchIOEndpointsAPIV1Interpreter, PageEndpointsInterpreter, SwaggerFinchIOEndpointsSwaggerV2Interpreter }
+import com.mmold.infrastructure.endpoints.finch.api.users.interpreters.UsersFinchIOEndpointsV1Interpreter
 import com.mmold.infrastructure.repositories.doobie.users.interpreters.UserRepositoryDoobieFInterpreter
 import com.mmold.infrastructure.endpoints.finch
 import com.mmold.infrastructure.endpoints.finch.ServiceSwaggerModule
-import com.mmold.infrastructure.endpoints.finch.messages.interpreters.MessageEndpointsInterpreters
+import com.mmold.infrastructure.endpoints.finch.api.messages.interpreters.MessageEndpointsInterpreters
 import com.mmold.infrastructure.repositories.doobie.messages.interpreters.MessageDoobieRepositoryInterpreter
 import com.mmold.infrastructure.endpoints.finch.SwaggerFinchEndpointRegistry
 import scala.concurrent.ExecutionContext

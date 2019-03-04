@@ -1,7 +1,7 @@
-package com.mmold.infrastructure.endpoints.finch.app.interpreters
+package com.mmold.infrastructure.endpoints.finch.api.app.interpreters
 
 import com.mmold.infrastructure.endpoints.finch.FinchIOEndpoint
-import com.mmold.infrastructure.endpoints.finch.app.HealthEndpointsAlgebra
+import com.mmold.infrastructure.endpoints.finch.api.app.HealthEndpointsAlgebra
 import io.circe.Json
 import io.finch._
 import io.finch.catsEffect._

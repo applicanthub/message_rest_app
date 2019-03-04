@@ -1,7 +1,7 @@
-package com.mmold.infrastructure.endpoints.finch.app.interpreters
+package com.mmold.infrastructure.endpoints.finch.api.app.interpreters
 
 import com.mmold.infrastructure.endpoints.finch.FinchIOEndpoint
-import com.mmold.infrastructure.endpoints.finch.app.PageEndpointsAlgebra
+import com.mmold.infrastructure.endpoints.finch.api.app.PageEndpointsAlgebra
 import io.finch.Ok
 import io.finch.catsEffect.{ get, path }
 import org.fusesource.scalate.TemplateEngine

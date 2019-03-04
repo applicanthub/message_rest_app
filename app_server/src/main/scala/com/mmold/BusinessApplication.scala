@@ -29,13 +29,13 @@ object BusinessApplication extends APIServer {
     applicationConfig match {
       case Left(exceptionsLinearCollection) =>
         exceptionsLinearCollection.toList.foreach(println)
-      
+
       case Right(config) =>
         // Startup application server
         val server = new BootstrapInterpreter(config).runApplication(List.empty)
-      
+
         onExit { val _ = server.close() }
-        
+
         // Startup admin server
         val _ = Await.ready(adminHttpServer)
     }
