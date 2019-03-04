@@ -1,7 +1,3 @@
-/**
- * @copyright Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
- * @license See LICENSE.txt
- */
 package com.mmold
 
 import com.mmold.bootstrap.interpreters.BootstrapInterpreter
@@ -33,10 +29,13 @@ object BusinessApplication extends APIServer {
     applicationConfig match {
       case Left(exceptionsLinearCollection) =>
         exceptionsLinearCollection.toList.foreach(println)
+      
       case Right(config) =>
         // Startup application server
         val server = new BootstrapInterpreter(config).runApplication(List.empty)
+      
         onExit { val _ = server.close() }
+        
         // Startup admin server
         val _ = Await.ready(adminHttpServer)
     }
