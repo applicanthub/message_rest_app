@@ -9,7 +9,7 @@ import WebSocketThirdPartyInterpreter.{ F, Collection, Channel, Event, Payload }
  *
  * @author Nick Odumo Feb 2019
  * @todo Upgrade class with a lot more functionality 
- * @param pusherConfig  
+ * @param pusherConfig Pusher config details
  */
 final class WebSocketThirdPartyInterpreter(
   pusherConfig: PusherConfig) extends WebSocketThirdPartyAlgebra[F, Collection, Channel, Event, Payload] {
