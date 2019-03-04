@@ -1,7 +1,3 @@
-/**
- * @copyright Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
- * @license See LICENSE.txt
- */
 package com.mmold
 
 import com.mmold.bootstrap.interpreters.BootstrapInterpreter
