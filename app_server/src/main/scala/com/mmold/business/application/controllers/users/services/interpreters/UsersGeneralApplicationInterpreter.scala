@@ -1,9 +1,9 @@
-package com.mmold.business.application.users.services.interpreters
+package com.mmold.business.application.controllers.users.services.interpreters
 
 import cats.Monad
-import com.mmold.business.application.users.models.commands.LoginCommandDTO
-import com.mmold.business.application.users.models.dtos.UserCredentials
-import com.mmold.business.application.users.services.{ CreateUserTokenServiceAlgebra, UsersGeneralApplicationServiceAlgebra }
+import com.mmold.business.application.controllers.users.models.commands.LoginCommandDTO
+import com.mmold.business.application.controllers.users.models.dtos.UserCredentials
+import com.mmold.business.application.controllers.users.services.{ CreateUserTokenServiceAlgebra, UsersGeneralApplicationServiceAlgebra }
 import com.mmold.business.domain.users.models.aggregates.User
 import com.mmold.business.domain.users.models.values.{ UserId, Username }
 import com.mmold.business.domain.users.repositories.UserRepositoryAlgebra

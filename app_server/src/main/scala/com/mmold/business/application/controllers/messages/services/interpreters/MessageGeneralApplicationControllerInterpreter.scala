@@ -1,11 +1,11 @@
-package com.mmold.business.application.messages.services.interpreters
+package com.mmold.business.application.controllers.messages.services.interpreters
 
 import cats.data.Validated._
 import cats.implicits._
 import cats.Monad
-import com.mmold.business.application.messages.models.commands.CreateMessageCommand
-import com.mmold.business.application.messages.models.dtos.MessageDTO
-import com.mmold.business.application.messages.services.MessageGeneralApplicationControllerAlgebra
+import com.mmold.business.application.controllers.messages.models.commands.CreateMessageCommand
+import com.mmold.business.application.controllers.messages.models.dtos.MessageDTO
+import com.mmold.business.application.controllers.messages.services.MessageGeneralApplicationControllerAlgebra
 import com.mmold.business.domain.messages.models.aggregates.Message
 import com.mmold.business.domain.messages.models.forms.SendMessageForm
 import com.mmold.business.domain.messages.models.values.{ MessageId, RecipientId, SenderId }

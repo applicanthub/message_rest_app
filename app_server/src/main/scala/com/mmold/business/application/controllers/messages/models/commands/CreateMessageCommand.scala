@@ -1,4 +1,4 @@
-package com.mmold.business.application.messages.models.commands
+package com.mmold.business.application.controllers.messages.models.commands
 
 import com.mmold.business.domain.messages.models.values.{ Body, RecipientId, SenderId }
 import com.mmold.scaffolding.business.application.models.events.CommandEvent

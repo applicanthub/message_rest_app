@@ -1,6 +1,6 @@
-package com.mmold.business.application.users.services.interpreters
+package com.mmold.business.application.controllers.users.services.interpreters
 
-import com.mmold.business.application.users.services.CreateUserTokenServiceAlgebra
+import com.mmold.business.application.controllers.users.services.CreateUserTokenServiceAlgebra
 import com.mmold.business.domain.users.models.values.Username
 import pdi.jwt.{ Jwt, JwtAlgorithm }
 import scala.util.Try

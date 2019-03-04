@@ -1,4 +1,4 @@
-package com.mmold.business.application.messages.models.dtos
+package com.mmold.business.application.controllers.messages.models.dtos
 
 import com.mmold.business.domain.messages.models.values._
 import com.mmold.scaffolding.business.application.models.dtos.DTO

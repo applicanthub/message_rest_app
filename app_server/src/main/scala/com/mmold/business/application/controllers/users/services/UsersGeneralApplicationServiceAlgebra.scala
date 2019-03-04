@@ -1,4 +1,4 @@
-package com.mmold.business.application.users.services
+package com.mmold.business.application.controllers.users.services
 
 import cats.Monad
 

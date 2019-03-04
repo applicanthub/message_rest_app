@@ -1,9 +1,9 @@
 package com.mmold.infrastructure.endpoints.finch.users.interpreters
 
 import cats.effect.IO
-import com.mmold.business.application.users.models.commands.LoginCommandDTO
-import com.mmold.business.application.users.models.dtos.UserCredentials
-import com.mmold.business.application.users.services.UsersGeneralApplicationServiceAlgebra
+import com.mmold.business.application.controllers.users.models.commands.LoginCommandDTO
+import com.mmold.business.application.controllers.users.models.dtos.UserCredentials
+import com.mmold.business.application.controllers.users.services.UsersGeneralApplicationServiceAlgebra
 import com.mmold.business.domain.users.models.aggregates.User
 import com.mmold.business.domain.users.models.values.UserId
 import com.mmold.infrastructure.endpoints.finch.FinchIOEndpoint

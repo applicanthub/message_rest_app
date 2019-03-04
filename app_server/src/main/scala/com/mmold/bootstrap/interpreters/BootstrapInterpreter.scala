@@ -7,8 +7,8 @@ import io.finch.circe._
 import io.finch.Application
 import com.twitter.finagle.{ Http, ListeningServer }
 import com.mmold.bootstrap.BootstrapAlgebra
-import com.mmold.business.application.messages.services.interpreters.MessageGeneralApplicationControllerInterpreter
-import com.mmold.business.application.users.services.interpreters.{ CreateUserTokenHS256Interpreter, UsersGeneralApplicationInterpreter }
+import com.mmold.business.application.controllers.messages.services.interpreters.MessageGeneralApplicationControllerInterpreter
+import com.mmold.business.application.controllers.users.services.interpreters.{ CreateUserTokenHS256Interpreter, UsersGeneralApplicationInterpreter }
 import com.mmold.business.domain.messages.services.interpreters._
 import com.mmold.configs.{ ApplicationConfig, ServiceSwaggerConfig }
 import com.mmold.business.domain.users.services.interpreters.UsernameFactoryInterpreter

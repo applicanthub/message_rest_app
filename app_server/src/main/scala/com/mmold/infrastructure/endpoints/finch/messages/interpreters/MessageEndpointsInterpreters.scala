@@ -1,9 +1,9 @@
 package com.mmold.infrastructure.endpoints.finch.messages.interpreters
 
 import cats.effect.IO
-import com.mmold.business.application.messages.models.commands.CreateMessageCommand
-import com.mmold.business.application.messages.models.dtos.MessageDTO
-import com.mmold.business.application.messages.services.interpreters.MessageGeneralApplicationControllerInterpreter
+import com.mmold.business.application.controllers.messages.models.commands.CreateMessageCommand
+import com.mmold.business.application.controllers.messages.models.dtos.MessageDTO
+import com.mmold.business.application.controllers.messages.services.interpreters.MessageGeneralApplicationControllerInterpreter
 import com.mmold.business.domain.messages.models.values.{ MessageId, RecipientId, SenderId }
 import com.mmold.infrastructure.endpoints.finch.FinchIOEndpoint
 import com.mmold.infrastructure.endpoints.finch.messages.MessagesEndpointsAlgebra

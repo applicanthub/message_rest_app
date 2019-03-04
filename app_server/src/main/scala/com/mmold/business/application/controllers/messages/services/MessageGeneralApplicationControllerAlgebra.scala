@@ -1,4 +1,4 @@
-package com.mmold.business.application.messages.services
+package com.mmold.business.application.controllers.messages.services
 
 /**
  * Message application interface.

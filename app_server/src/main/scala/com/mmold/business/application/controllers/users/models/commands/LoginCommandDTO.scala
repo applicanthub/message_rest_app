@@ -1,4 +1,4 @@
-package com.mmold.business.application.users.models.commands
+package com.mmold.business.application.controllers.users.models.commands
 
 import io.circe.Decoder, io.circe.Encoder, io.circe.generic.semiauto._
 import com.mmold.business.domain.users.models.values.{ UserPassword, Username }
