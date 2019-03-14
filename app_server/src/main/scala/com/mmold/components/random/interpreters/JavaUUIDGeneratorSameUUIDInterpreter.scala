@@ -2,9 +2,16 @@ package com.mmold.components.random.interpreters
 
 import com.mmold.components.random.{ JavaUUIDGeneratorAlgebra, UUIDRepr }
 import java.util.UUID
+import com.mmold.components.random
 
-final class JavaUUIDGeneratorSameUUIDInterpreter(
-  uuidRepr: UUIDRepr) extends JavaUUIDGeneratorAlgebra {
+/**
+ * Java UUID generator.
+ *
+ * @author Nick Odumo Feb 2019
+ * @groupname Component
+ */
+final class JavaUUIDGeneratorSameUUIDInterpreter private (
+  val uuidRepr: UUIDRepr) extends JavaUUIDGeneratorAlgebra {
 
   def randomUUID(): UUID = UUID.fromString(uuidRepr)
 
@@ -12,7 +19,11 @@ final class JavaUUIDGeneratorSameUUIDInterpreter(
 
 object JavaUUIDGeneratorSameUUIDInterpreter {
 
-  def apply(uuidRepr: UUIDRepr): JavaUUIDGeneratorSameUUIDInterpreter =
+  private def apply(uuidRepr: UUIDRepr): JavaUUIDGeneratorSameUUIDInterpreter =
     new JavaUUIDGeneratorSameUUIDInterpreter(uuidRepr)
+
+  def defaultBasedOnUUID1: JavaUUIDGeneratorSameUUIDInterpreter = apply(random.UUID_Constant_1)
+
+  def defaultBasedOnUUID2: JavaUUIDGeneratorSameUUIDInterpreter = apply(random.UUID_Constant_2)
 
 }

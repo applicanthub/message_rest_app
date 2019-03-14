@@ -10,6 +10,7 @@ import TemplatingComponentScalateInterpreter._
  *
  * @author Nick Odumo Feb 2019
  * @usecase Scalate templating
+ * @groupname Component
  * @param name Template name
  * @param state State to pass into template
  */
