@@ -1,7 +1,6 @@
 package com.mmold.infrastructure.logging.interpreters
 
 import java.io.PrintWriter
-
 import com.mmold.infrastructure.logging.interpreters.LoggerEffInterpreter.{ LogMessage }
 import org.atnos.eff.RightFold
 

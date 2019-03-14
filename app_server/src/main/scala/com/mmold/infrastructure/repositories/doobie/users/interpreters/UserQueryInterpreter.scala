@@ -7,7 +7,7 @@ import com.mmold.business.domain.users.models.aggregates.User
 import com.mmold.business.domain.users.models.values.{ UserId, Username }
 import com.mmold.infrastructure.repositories.doobie.users.UserQueryAlgebra
 
-trait UserQueryInterpreter extends UserQueryAlgebra {
+private[interpreters] trait UserQueryInterpreter extends UserQueryAlgebra {
 
   def selectByUserId(userId: UserId.Repr): Query0[User] = sql"""
     SELECT *

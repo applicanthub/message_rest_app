@@ -14,7 +14,7 @@ import com.mmold.configs.{ ApplicationConfig, ServiceSwaggerConfig }
 import com.mmold.business.domain.users.services.interpreters.UsernameFactoryInterpreter
 import com.mmold.infrastructure.endpoints.finch.api.app.interpreters.{ HealthFinchIOEndpointsAPIV1Interpreter, PageEndpointsInterpreter, SwaggerFinchIOEndpointsSwaggerV2Interpreter }
 import com.mmold.infrastructure.endpoints.finch.api.users.interpreters.UsersFinchIOEndpointsV1Interpreter
-import com.mmold.infrastructure.repositories.doobie.users.interpreters.UserRepositoryDoobieFInterpreter
+import com.mmold.infrastructure.repositories.doobie.users.interpreters.UserRepositoryDoobieInterpreter
 import com.mmold.infrastructure.endpoints.finch
 import com.mmold.infrastructure.endpoints.finch.ServiceSwaggerModule
 import com.mmold.infrastructure.endpoints.finch.api.messages.interpreters.MessageEndpointsInterpreters
@@ -77,7 +77,7 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   //================================================================================
 
   private implicit val messageDoobieRepository = MessageDoobieRepositoryInterpreter.apply(doobieTranscation)
-  private implicit val userDoobieRepository = UserRepositoryDoobieFInterpreter.apply(doobieTranscation)
+  private implicit val userDoobieRepository = UserRepositoryDoobieInterpreter.apply(doobieTranscation)
 
   //================================================================================
   // Application: Messages
@@ -124,7 +124,9 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   private val routeCoproduct = // @todo Refactor to infrastructure and then
     applicationFinchRoutes :+:
       messageFinchRoutes :+:
-      usersFinchRoutes :+: swaggerFinchRoutes.routes :+: pageEndpointsInterpreter.routes
+      usersFinchRoutes :+:
+      swaggerFinchRoutes.routes :+:
+      pageEndpointsInterpreter.routes
 
   // private val routePage = pageEndpointsInterpreter.routes
 

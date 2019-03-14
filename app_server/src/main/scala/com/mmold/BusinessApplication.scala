@@ -3,7 +3,7 @@ package com.mmold
 import com.mmold.bootstrap.interpreters.BootstrapInterpreter
 import com.mmold.configs.ApplicationConfig
 import com.twitter.util.Await
-import org.fusesource.scalate.TemplateEngine
+import pureconfig.error.ConfigReaderFailures
 
 /**
  * "Truth can only be found in one place: the code."
@@ -18,27 +18,25 @@ import org.fusesource.scalate.TemplateEngine
  */
 object BusinessApplication extends APIServer {
 
+  private def loadApplicationConfig: Either[ConfigReaderFailures, ApplicationConfig] =
+    ApplicationConfig.loadConfigIO
+
   /**
    * HTTP application.
    *
    * @author Nick Odumo Feb 2019
+   * @groupname Root
    */
-  def main(): Unit = {
-    val applicationConfig = ApplicationConfig.loadConfigIO
+  def main(): Unit = loadApplicationConfig match {
+    case Left(exceptionsLinearCollection) =>
+      exceptionsLinearCollection.toList.foreach(println)
 
-    applicationConfig match {
-      case Left(exceptionsLinearCollection) =>
-        exceptionsLinearCollection.toList.foreach(println)
+    case Right(config) =>
+      val server = new BootstrapInterpreter(config).runApplication(List.empty)
 
-      case Right(config) =>
-        // Startup application server
-        val server = new BootstrapInterpreter(config).runApplication(List.empty)
+      onExit { val _ = server.close() }
 
-        onExit { val _ = server.close() }
-
-        // Startup admin server
-        val _ = Await.ready(adminHttpServer)
-    }
+      val _ = Await.ready(adminHttpServer)
   }
 
 }

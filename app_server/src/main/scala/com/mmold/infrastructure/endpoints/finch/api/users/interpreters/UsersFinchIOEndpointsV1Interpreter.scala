@@ -40,10 +40,8 @@ final class UsersFinchIOEndpointsV1Interpreter(
       usersGeneralApplicationService.loginJWT(loginCommand)
         .map((optionUserCredentials: Option[UserCredentials]) => optionUserCredentials match {
           case Some(userCredentials) =>
-            logRequesContext(s"Endpoint::authenticate User (${loginCommand.username}) found.")
             Ok(userCredentials)
           case None =>
-            logRequesContext(s"Endpoint::authenticate User (${loginCommand.username}) not found.")
             NotFound(new Exception("User::Error:: Users not found."))
         })
     }

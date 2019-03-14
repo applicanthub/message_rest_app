@@ -52,7 +52,6 @@ final class MessageEndpointsInterpreters(
     post(v1_messages :: jsonBody[CreateMessageCommand]) { createMessageCommand: CreateMessageCommand =>
       messageGeneralApplicationController.sendMessage(createMessageCommand).map({
         case Some(messageDTO) =>
-          logRequesContext(s"Messages::Error:: Messages created (${messageDTO}).")
           Created(messageDTO)
         case None =>
           NotFound(new Exception(s"Messages::Error:: Messages not created."))

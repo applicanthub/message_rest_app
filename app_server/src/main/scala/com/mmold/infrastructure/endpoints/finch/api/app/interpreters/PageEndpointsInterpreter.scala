@@ -6,20 +6,20 @@ import io.finch.Ok
 import io.finch.catsEffect.{ get, path }
 import org.fusesource.scalate.TemplateEngine
 
-final class PageEndpointsInterpreter extends PageEndpointsAlgebra[PageEndpointsInterpreter.Page] {
+final class PageEndpointsInterpreter() extends PageEndpointsAlgebra[PageEndpointsInterpreter.Page] {
 
   import PageEndpointsInterpreter._
 
   val routes: FinchIOEndpoint[Page] = _indexEndpoint
 
-  private val FOLDER = "scalate"
+  private val _folderName = "scalate"
 
-  private val engine = new TemplateEngine
+  private val _engine = new TemplateEngine
 
-  private def renderTemplate(uri: String, state: Map[String, Any]): String = engine.layout(FOLDER ++ uri, state)
+  private def _renderTemplate(uri: String, state: Map[String, Any]): String = _engine.layout(_folderName ++ uri, state)
 
   def _indexEndpoint: FinchIOEndpoint[Page] = get("demo") {
-    Ok(renderTemplate("master.ssp", Map("title" -> "title")))
+    Ok(_renderTemplate("master.ssp", Map("title" -> "title")))
   }
 
 }
