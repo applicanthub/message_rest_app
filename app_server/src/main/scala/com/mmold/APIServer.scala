@@ -12,6 +12,7 @@ import com.twitter.server.Stats
  * API server definition.
  *
  * @author Nick Odumo Feb 2019
+ * @groupname Root
  */
 trait APIServer extends App
   with Linters

@@ -115,9 +115,9 @@ final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends B
   //================================================================================
 
   private val pageEndpointsInterpreter = new PageEndpointsInterpreter
-  private val serviceSwaggerModule = new ServiceSwaggerModule(ServiceSwaggerConfig.default())
+  private val serviceSwaggerModule = new ServiceSwaggerModule(ServiceSwaggerConfig.testConfiguration())
   private val swagger = serviceSwaggerModule.swagger
-  private val a = new SwaggerFinchEndpointRegistry(ServiceSwaggerConfig.default())(swagger).tryIt()
+  private val a = new SwaggerFinchEndpointRegistry(ServiceSwaggerConfig.testConfiguration())(swagger).tryIt()
   println(a)
   private val swaggerFinchRoutes = new SwaggerFinchIOEndpointsSwaggerV2Interpreter(swagger)
 
