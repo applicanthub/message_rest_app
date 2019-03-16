@@ -7,6 +7,8 @@ import TemplateEngineFactoryScalateEngineInterpreter.{ From, To }
 /**
  * Template engine factory.
  *
+ * System.getProperty("scalate.mode", "production"))
+ *
  * Example of how this kind of engine can be used:
  * {{{
  *   def tryTemplating = {
