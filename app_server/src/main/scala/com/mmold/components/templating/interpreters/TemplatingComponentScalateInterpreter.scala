@@ -22,7 +22,7 @@ final class TemplatingComponentScalateInterpreter private (
    * @author Nick Odumo Feb 2019
    * @param templateName Template name
    */
-  private def buildURI(templateName: TemplateName): String = s"$templateDirectoryPath/$templateName"
+  private def _buildURI(templateName: TemplateName): String = s"$templateDirectoryPath/$templateName"
 
   /**
    * Render template.
@@ -35,7 +35,7 @@ final class TemplatingComponentScalateInterpreter private (
     IO.delay(
       ScalateResult(
         engine.layout(
-          uri = buildURI(templateName),
+          uri = _buildURI(templateName),
           attributes = state)))
 
 }
