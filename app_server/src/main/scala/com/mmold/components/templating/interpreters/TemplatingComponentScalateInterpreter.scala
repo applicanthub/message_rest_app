@@ -8,6 +8,12 @@ import TemplatingComponentScalateInterpreter._
 /**
  * Template component based on scalate.
  *
+ * By convention:
+ * {{{
+ *  ThisClass.apply(_ ..., "scalate" :TemplatePath  ,_ ...)
+ *
+ * }}}
+ *
  * @author Nick Odumo Feb 2019
  * @param engine Engine
  * @param templateDirectoryPath Template directory
@@ -30,9 +36,10 @@ final class TemplatingComponentScalateInterpreter private (
    * @author Nick Odumo Feb 2019
    * @param templateName Template name
    * @param state State to pass into template
+   * @return Template within a container of sorts.
    */
   def render(templateName: TemplateName)(state: State): F[Result] =
-    IO.delay(
+    IO.delay( //  To be safe `Pure` let us suspend the function.
       ScalateResult(
         engine.layout(
           uri = _buildURI(templateName),
@@ -52,12 +59,7 @@ object TemplatingComponentScalateInterpreter {
 
   type F[A] = IO[A]
 
-  private val _scalateDirectory: TemplateDirectoryPath = "scalate"
-
   def apply(engine: TemplateEngine)(templateDirectoryPath: TemplateDirectoryPath): TemplatingComponentScalateInterpreter =
     new TemplatingComponentScalateInterpreter(engine)(templateDirectoryPath)
-
-  def defaultFromScalateDirectory(templateEngine: TemplateEngine): TemplatingComponentScalateInterpreter =
-    apply(templateEngine)(_scalateDirectory)
 
 }
