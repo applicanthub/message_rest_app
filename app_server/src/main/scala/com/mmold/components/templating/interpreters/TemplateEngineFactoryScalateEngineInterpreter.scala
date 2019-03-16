@@ -18,7 +18,7 @@ import TemplateEngineFactoryScalateEngineInterpreter.{ From, To }
  *
  * @author Nick Odumo Feb 2019
  */
-final class TemplateEngineFactoryScalateEngineInterpreter extends TemplateEngineFactoryAlgebra[From, To] {
+final class TemplateEngineFactoryScalateEngineInterpreter private () extends TemplateEngineFactoryAlgebra[From, To] {
 
   def create(from: From): TemplateEngine = new TemplateEngine()
 

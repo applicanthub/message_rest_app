@@ -9,23 +9,34 @@ import TemplatingComponentScalateInterpreter._
  * Template component based on scalate.
  *
  * @author Nick Odumo Feb 2019
- * @usecase Scalate templating
- * @groupname Component
- * @param name Template name
- * @param state State to pass into template
+ * @param engine Engine
+ * @param templateDirectoryPath Template directory
  */
-final class TemplatingComponentScalateInterpreter(
+final class TemplatingComponentScalateInterpreter private (
   engine: TemplateEngine)(
   templateDirectoryPath: TemplateDirectoryPath) extends TemplatingComponentAlgebra[F, TemplateDirectoryPath, TemplateName, State, Result] {
 
   /**
-   * Render template.
+   * Build template URI.
+   *
    * @author Nick Odumo Feb 2019
-   * @param name Template name
+   * @param templateName Template name
+   */
+  private def buildURI(templateName: TemplateName): String = s"$templateDirectoryPath/$templateName"
+
+  /**
+   * Render template.
+   *
+   * @author Nick Odumo Feb 2019
+   * @param templateName Template name
    * @param state State to pass into template
    */
-  def render(name: TemplateName)(state: State): F[Result] =
-    IO.delay(ScalateResult(engine.layout(s"$templateDirectoryPath/$name", state)))
+  def render(templateName: TemplateName)(state: State): F[Result] =
+    IO.delay(
+      ScalateResult(
+        engine.layout(
+          uri = buildURI(templateName),
+          attributes = state)))
 
 }
 
@@ -41,12 +52,12 @@ object TemplatingComponentScalateInterpreter {
 
   type F[A] = IO[A]
 
-  private val SCALATE_DIR: TemplateDirectoryPath = "scalate"
+  private val _scalateDirectory: TemplateDirectoryPath = "scalate"
 
   def apply(engine: TemplateEngine)(templateDirectoryPath: TemplateDirectoryPath): TemplatingComponentScalateInterpreter =
     new TemplatingComponentScalateInterpreter(engine)(templateDirectoryPath)
 
-  def default(templateEngine: TemplateEngine): TemplatingComponentScalateInterpreter =
-    apply(templateEngine)(SCALATE_DIR)
+  def defaultFromScalateDirectory(templateEngine: TemplateEngine): TemplatingComponentScalateInterpreter =
+    apply(templateEngine)(_scalateDirectory)
 
 }
