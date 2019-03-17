@@ -1,5 +1,7 @@
 package com.mmold.console
 
-trait CommandParserAlgebra {
+trait CommandParserAlgebra[F[_], ConsoleCommand] {
+
+  def parse
 
 }
