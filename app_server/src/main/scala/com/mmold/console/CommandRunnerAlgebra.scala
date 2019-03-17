@@ -1,5 +1,7 @@
 package com.mmold.console
 
-trait CommandRunnerAlgebra[Command] {
+trait CommandRunnerAlgebra[F[_], Command] {
+
+  def run(command: Command): F[String]
 
 }
