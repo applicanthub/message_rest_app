@@ -3,7 +3,7 @@ package com.mmold.components.templating.interpreters
 import cats.effect.IO
 import com.mmold.components.templating.TemplatingComponentAlgebra
 import org.fusesource.scalate.TemplateEngine
-import TemplatingComponentScalateInterpreter._
+import TemplatingComponentScalateInterpreter.{ F, TemplateDirectoryPath, TemplateName, State, Result }
 
 /**
  * Template component based on scalate.
@@ -11,7 +11,6 @@ import TemplatingComponentScalateInterpreter._
  * By convention:
  * {{{
  *  ThisClass.apply(_ ..., "scalate" :TemplatePath  ,_ ...)
- *
  * }}}
  *
  * @author Nick Odumo Feb 2019
@@ -59,7 +58,9 @@ object TemplatingComponentScalateInterpreter {
 
   type F[A] = IO[A]
 
-  def apply(engine: TemplateEngine)(templateDirectoryPath: TemplateDirectoryPath): TemplatingComponentScalateInterpreter =
+  def apply(
+    engine: TemplateEngine)(
+    templateDirectoryPath: TemplateDirectoryPath): TemplatingComponentScalateInterpreter =
     new TemplatingComponentScalateInterpreter(engine)(templateDirectoryPath)
 
 }
