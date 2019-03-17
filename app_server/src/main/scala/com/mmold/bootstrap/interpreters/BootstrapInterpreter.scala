@@ -32,16 +32,26 @@ import scala.concurrent.ExecutionContext
  */
 final class BootstrapInterpreter(applicationConfig: ApplicationConfig) extends BootstrapAlgebra {
 
-  //================================================================================
-  // Execution contexts: Message
-  //================================================================================
-
+  /*
+  |--------------------------------------------------------------------------
+  | Execution contexts: Message
+  |--------------------------------------------------------------------------
+  |
+  | This is the Permission model used by Entrust to create correct relations.
+  | Update the permission if it is in a different namespace.
+  |
+  */
   private implicit val contextShift = IO.contextShift(ExecutionContext.global)
 
-  //================================================================================
-  // Databases: Message
-  //================================================================================
-
+  /*
+  |--------------------------------------------------------------------------
+  |  Databases: Message
+  |--------------------------------------------------------------------------
+  |
+  | This is the Permission model used by Entrust to create correct relations.
+  | Update the permission if it is in a different namespace.
+  |
+  */
   private implicit val doobieTranscation =
     Transactor.fromDriverManager[IO](
       driver = "org.postgresql.Driver",
