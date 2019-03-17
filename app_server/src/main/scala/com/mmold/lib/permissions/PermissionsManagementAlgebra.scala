@@ -1,6 +1,6 @@
 package com.mmold.lib.permissions
 
-trait PermissionsCheckingAlgebra[F[_]] {
+trait PermissionsManagementAlgebra[F[_]] {
 
   /**
    * A permission can be applied to roles.
