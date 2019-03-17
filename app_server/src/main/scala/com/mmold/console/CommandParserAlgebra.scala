@@ -1,7 +1,7 @@
 package com.mmold.console
 
-trait CommandParserAlgebra[F[_], ConsoleCommand] {
+trait CommandParserAlgebra[F[_], L[_], ConsoleCommand] {
 
-  def parse
+  def parse(input: L[String]): F[ConsoleCommand]
 
 }
