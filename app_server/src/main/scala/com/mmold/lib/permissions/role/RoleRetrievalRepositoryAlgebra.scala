@@ -1,5 +1,10 @@
 package com.mmold.lib.permissions.role
 
+/**
+ * A role may be given various permissions.
+ *
+ * @todo Cascading additions
+ */
 trait RoleRetrievalRepositoryAlgebra[F[_], Id, Name, GuardName, Permission] {
 
   /**
