@@ -7,6 +7,7 @@ import com.mmold.lib.permissions.permissions.PermissionId
  *
  * @author Nick Odumo March 2019
  * @usecase Identifying a collection of permissions.
+ * @todo Abstract out a sort of baned roles.
  */
 sealed trait Role
 
@@ -23,17 +24,23 @@ final case object EmptyRole
  *
  * @author Nick Odumo March 2019
  * @usecase Defined role.
+ * @param id
+ * @param name
+ * @param displayName
+ * @param description
+ * @param permissions
  */
 final case class DefinedRole(
   id: Role.Id,
   name: Role.Name,
   displayName: Role.DisplayName,
   description: Role.Description,
-  permissions: Set[PermissionId]) extends Role
+  permissions: Set[PermissionId],
+  subRoles: Set[RoleId]) extends Role
 
 object Role {
 
-  type Id = String
+  type Id = RoleId
 
   type Name = String
 
