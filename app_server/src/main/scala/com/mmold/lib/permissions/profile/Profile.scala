@@ -3,12 +3,12 @@ package com.mmold.lib.permissions.profile
 import com.mmold.lib.permissions.role.{ Role }
 
 final case class Profile(
-  id: Profile.ProfileId_,
+  id: Profile.Id,
   roles: Profile.Roles)
 
 object Profile {
 
-  type ProfileId_ = ProfileId
+  type Id = ProfileId
 
   type Roles = Set[Role]
 

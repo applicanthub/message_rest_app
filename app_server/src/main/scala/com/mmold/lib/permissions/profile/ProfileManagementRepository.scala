@@ -11,23 +11,35 @@ package com.mmold.lib.permissions.profile
  */
 trait ProfileManagementRepository[F[_], G[_], Role, ProfileId, Profile] {
 
-  // Assign role
-  def assignRole(
+  //================================================================================
+  // Role: Assign-
+  //================================================================================
+
+  def assignRole( // Assign role
     role: Role,
     profileId: ProfileId): F[G[Profile]]
 
-  // Has role
-  def hasRole(
+  //================================================================================
+  // Role check
+  //================================================================================
+
+  def hasRole( // Has role
     role: Role,
     profileId: ProfileId): F[G[Profile]]
 
-  // Doesn't have role
-  def doesNotHaveRole(
+  def doesNotHaveRole( // Doesn't have role
     role: Role,
     profileId: ProfileId): F[G[Profile]]
 
-  // Assign role
-  def removeRole(
+  //================================================================================
+  // Role: Remove
+  //================================================================================
+
+  def removeRole( // Remove role
+    role: Role,
+    profileId: ProfileId): F[G[Profile]]
+
+  def removeAllRoles( // Remove all roles
     role: Role,
     profileId: ProfileId): F[G[Profile]]
 

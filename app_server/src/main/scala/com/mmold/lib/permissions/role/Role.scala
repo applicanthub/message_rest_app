@@ -29,6 +29,7 @@ final case object EmptyRole
  * @param displayName
  * @param description
  * @param permissions
+ * @param subRoles
  */
 final case class DefinedRole(
   id: Role.Id,
@@ -36,7 +37,7 @@ final case class DefinedRole(
   displayName: Role.DisplayName,
   description: Role.Description,
   permissions: Set[PermissionId],
-  subRoles: Set[RoleId]) extends Role
+  subRoles: Set[Role]) extends Role
 
 object Role {
 
@@ -48,6 +49,14 @@ object Role {
 
   type Description = String
 
-  def emptyRole = EmptyRole
+  def emptyRole: EmptyRole.type = EmptyRole
+
+  def define(
+    id: Role.Id,
+    name: Role.Name,
+    displayName: Role.DisplayName,
+    description: Role.Description,
+    permissions: Set[PermissionId],
+    subRoles: Set[RoleId]): Role = ???
 
 }
