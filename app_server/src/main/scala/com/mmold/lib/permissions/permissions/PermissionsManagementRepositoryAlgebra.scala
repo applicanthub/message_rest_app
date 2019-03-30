@@ -1,5 +1,10 @@
 package com.mmold.lib.permissions.permissions
 
+/**
+ * A permission can be applied to roles.
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+ */
 trait PermissionsManagementRepositoryAlgebra[F[_], Role] {
 
   /**
@@ -13,7 +18,7 @@ trait PermissionsManagementRepositoryAlgebra[F[_], Role] {
    * Find a permission by its name.
    *
    * @param name: String
-   * @param string|null guardName: String
+   * @param guardName guardName: String
    *
    * @return Permission
    */
@@ -23,7 +28,7 @@ trait PermissionsManagementRepositoryAlgebra[F[_], Role] {
    * Find a permission by its id.
    *
    * @param int id
-   * @param string|null guardName: String
+   * @param guardName guardName: String
    *
    * @return Permission
    */
@@ -33,7 +38,7 @@ trait PermissionsManagementRepositoryAlgebra[F[_], Role] {
    * Find or Create a permission by its name and guard name.
    *
    * @param name: String
-   * @param string|null guardName: String
+   * @param guardName guardName: String
    *
    * @return Permission
    */
