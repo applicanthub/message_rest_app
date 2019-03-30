@@ -2,9 +2,14 @@ package com.mmold.lib.permissions.exceptions
 
 import PermissionsError.{ Message }
 
+/**
+ * Permissions error.
+ *
+ * @author Nick Odumo March 2019
+ */
 sealed trait PermissionsError extends Throwable
 
-final case class GuardDoesNotMatch(
+final case class PermissionGuardDoesNotMatch(
   message: Option[Message]) extends PermissionsError
 
 final case class PermissionAlreadyExists(
@@ -13,13 +18,7 @@ final case class PermissionAlreadyExists(
 final case class PermissionDoesNotExist(
   message: Option[Message]) extends PermissionsError
 
-final case class RoleAlreadyExists(
-  message: Option[Message]) extends PermissionsError
-
-final case class RoleDoesNotExist(
-  message: Option[Message]) extends PermissionsError
-
-final case class UnauthorizedException(
+final case class PermissionUnauthorizedException(
   message: Option[Message]) extends PermissionsError
 
 object PermissionsError {

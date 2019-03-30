@@ -1,3 +1,5 @@
 package com.mmold.lib.permissions
 
-trait ValidateServiceAlgebra
+package object permissions {
+
+}

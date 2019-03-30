@@ -1,6 +1,6 @@
 package com.mmold.lib.permissions.role
 
-trait RoleManagementRepositoryAlgebra[F[_], Id, Name, GuardName, Permission] {
+trait RoleRetrievalRepositoryAlgebra[F[_], Id, Name, GuardName, Permission] {
 
   /**
    * A role may be given various permissions.

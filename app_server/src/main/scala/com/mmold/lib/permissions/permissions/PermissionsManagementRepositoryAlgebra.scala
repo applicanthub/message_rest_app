@@ -1,4 +1,4 @@
-package com.mmold.lib.permissions
+package com.mmold.lib.permissions.permissions
 
 trait PermissionsManagementRepositoryAlgebra[F[_], Role] {
 

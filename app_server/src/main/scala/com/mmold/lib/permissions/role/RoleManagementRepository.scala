@@ -1,4 +1,4 @@
-package com.mmold.lib.permissions
+package com.mmold.lib.permissions.role
 
 /**
  * Permission repository.
@@ -7,7 +7,7 @@ package com.mmold.lib.permissions
  * @tparam F Effect
  * @tparam Entity Entity name
  */
-trait PermissionsRepository[F[_], Entity] {
+trait RoleManagementRepository[F[_], Entity] {
 
   def assignRole(entity: Entity): F[Unit]
 
