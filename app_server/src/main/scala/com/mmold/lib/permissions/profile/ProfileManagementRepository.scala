@@ -1,5 +1,7 @@
 package com.mmold.lib.permissions.profile
 
+import cats.data.NonEmptyList
+
 /**
  * Permission repository.
  *
@@ -8,6 +10,7 @@ package com.mmold.lib.permissions.profile
  * @tparam G G Effect (Ideally supporting monad error)
  * @tparam Role Role
  * @tparam ProfileId Profile Id
+ * @tparam Profile Profile
  */
 trait ProfileManagementRepository[F[_], G[_], Role, ProfileId, Profile] {
 
@@ -35,8 +38,12 @@ trait ProfileManagementRepository[F[_], G[_], Role, ProfileId, Profile] {
   // Role: Remove
   //================================================================================
 
-  def removeRole( // Remove role
+  def revokeRole( // Remove role
     role: Role,
+    profileId: ProfileId): F[G[Profile]]
+
+  def removeRoles( // Remove all roles
+    roles: NonEmptyList[Role],
     profileId: ProfileId): F[G[Profile]]
 
   def removeAllRoles( // Remove all roles

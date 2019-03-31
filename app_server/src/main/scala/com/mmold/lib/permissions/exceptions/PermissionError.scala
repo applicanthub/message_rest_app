@@ -3,8 +3,8 @@ package com.mmold.lib.permissions.exceptions
 /**
  * Permissions error.
  *
- * @param errorMessage
- * @param throwable
+ * @param errorMessage Error message
+ * @param throwable Throwable
  */
 abstract class PermissionError(
   errorMessage: PermissionError.ErrorMessage,

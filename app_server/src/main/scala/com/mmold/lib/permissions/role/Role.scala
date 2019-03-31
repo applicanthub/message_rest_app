@@ -15,9 +15,17 @@ sealed trait Role
  * Empty role.
  *
  * @author Nick Odumo March 2019
- * @usecase Identifying a non-identified role.
+ * @usecase Identifying a non-identified role (Bottom).
  */
 final case object EmptyRole
+
+/**
+  * God role.
+  *
+  * @author Nick Odumo March 2019
+  * @usecase Identifying a non-identified role(Top).
+  */
+final case object GodRole
 
 /**
  * Application role
