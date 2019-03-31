@@ -1,4 +1,4 @@
-package com.mmold.lib.permissions.exceptions
+package com.mmold.lib.permissions.role
 
 import RolesError.{ Message }
 
