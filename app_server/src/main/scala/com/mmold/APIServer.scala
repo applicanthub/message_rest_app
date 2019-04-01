@@ -12,6 +12,7 @@ import com.twitter.server.Stats
  * API server definition.
  *
  * @author Nick Odumo Feb 2019
+ * @usecase Use for all application infrastructure.
  */
 trait APIServer extends App
   with Linters
